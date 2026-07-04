@@ -41,9 +41,9 @@ const IconChevron = () => (
 /* ─── Contact detail rows ────────────────────────────────────── */
 const DETAILS = [
   { icon: <IconPin />,   title: 'Head Office',     value: 'WZ - 113/4, Subhash Nagar, Meenakshi Garden, Ashok Nagar, New Delhi, Delhi, 110018', note: 'Visit us during business hours' },
-  { icon: <IconPhone />, title: 'Phone Support',   value: '+91 980 182 1680',          note: 'Mon-Sat, 10 AM - 7 PM' },
-  { icon: <IconChat />,  title: 'WhatsApp Chat',   value: '+91 980 182 1680',          note: 'Available 24/7 for quick response' },
-  { icon: <IconMail />,  title: 'Email Support',   value: 'Contact@studentschoice.in', note: 'Response within 1 business day' },
+  { icon: <IconPhone />, title: 'Phone Support',   value: '+91 980 182 1680',          note: 'Mon-Sat, 10 AM - 7 PM', href: 'tel:+919801821680' },
+  { icon: <IconChat />,  title: 'WhatsApp Chat',   value: '+91 980 182 1680',          note: 'Available 24/7 for quick response', href: 'https://wa.me/919801821680' },
+  { icon: <IconMail />,  title: 'Email Support',   value: 'Contact@studentschoice.in', note: 'Response within 1 business day', href: 'mailto:Contact@studentschoice.in' },
 ];
 
 const BADGES = [
@@ -163,17 +163,30 @@ export default function ContactUsPage() {
             <p className="text-gray-500 mt-3 text-[15px]">Reach out via phone, WhatsApp, email, or visit us in person.</p>
 
             <div className="mt-6 space-y-3.5">
-              {DETAILS.map((d) => (
-                <div key={d.title}
-                  className="flex gap-4 rounded-2xl border border-[#f0eafa] bg-[#fbf9ff] p-4 hover:border-[#d9c7f7] hover:shadow-[0_10px_24px_rgba(110,0,224,0.10)] transition-all">
-                  <span className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-[#f3ecff] text-[#6E00E0]">{d.icon}</span>
-                  <div className="min-w-0">
-                    <p className="font-bold text-gray-900">{d.title}</p>
-                    <p className="text-gray-700 text-[14px] mt-0.5 break-words">{d.value}</p>
-                    <p className="text-gray-400 text-[12px] mt-1 italic">{d.note}</p>
-                  </div>
-                </div>
-              ))}
+              {DETAILS.map((d) => {
+                const isWhatsApp = d.href?.startsWith('https://wa.me');
+                const inner = (
+                  <>
+                    <span className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-[#f3ecff] text-[#6E00E0]">{d.icon}</span>
+                    <div className="min-w-0">
+                      <p className="font-bold text-gray-900">{d.title}</p>
+                      <p className="text-gray-700 text-[14px] mt-0.5 break-words">{d.value}</p>
+                      <p className="text-gray-400 text-[12px] mt-1 italic">{d.note}</p>
+                    </div>
+                  </>
+                );
+                const cardCls = "flex gap-4 rounded-2xl border border-[#f0eafa] bg-[#fbf9ff] p-4 hover:border-[#d9c7f7] hover:shadow-[0_10px_24px_rgba(110,0,224,0.10)] transition-all";
+                return d.href ? (
+                  <a key={d.title} href={d.href}
+                    target={isWhatsApp ? '_blank' : undefined}
+                    rel={isWhatsApp ? 'noopener noreferrer' : undefined}
+                    className={`${cardCls} cursor-pointer`}>
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={d.title} className={cardCls}>{inner}</div>
+                );
+              })}
             </div>
           </motion.div>
 
@@ -198,7 +211,7 @@ export default function ContactUsPage() {
                     <div className="relative">
                       <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6E00E0]"><IconUser /></span>
                       <input required value={booking.name} onChange={e => setBooking({ ...booking, name: e.target.value })}
-                        placeholder="Pankaj Sharma" className={fieldCls} />
+                        placeholder="e.g. Rahul Kumar" className={fieldCls} />
                     </div>
                   </div>
                   <div>
@@ -206,7 +219,7 @@ export default function ContactUsPage() {
                     <div className="relative">
                       <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6E00E0]"><IconPhone /></span>
                       <input required type="tel" value={booking.phone} onChange={e => setBooking({ ...booking, phone: e.target.value })}
-                        placeholder="+91 980 182 1680" className={fieldCls} />
+                        placeholder="e.g. +91 98765 43210" className={fieldCls} />
                     </div>
                   </div>
                 </div>
@@ -216,7 +229,7 @@ export default function ContactUsPage() {
                   <div className="relative">
                     <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6E00E0]"><IconMail /></span>
                     <input required type="email" value={booking.email} onChange={e => setBooking({ ...booking, email: e.target.value })}
-                      placeholder="Pankaj@studentschoice.in" className={fieldCls} />
+                      placeholder="e.g. rahul.kumar@gmail.com" className={fieldCls} />
                   </div>
                 </div>
 

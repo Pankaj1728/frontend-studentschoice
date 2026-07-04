@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageShell } from '@/components/layout/PageShell';
 import { EduLoanBankMarquee } from '@/components/education-loan/EduLoanBankMarquee';
-import { ReferFriendSection } from '@/components/home/ReferFriendSection';
 import { TestimonialSection } from '@/components/home/TestimonialSection';
 import { RejectionSupportButton } from '@/components/beyond-rejection/RejectionSupportButton';
 
@@ -105,23 +104,23 @@ export default function BeyondRejectionPage() {
               <div className="mt-8 flex items-center gap-3">
                 <div className="flex -space-x-3">
                   {[
-                    'https://randomuser.me/api/portraits/women/65.jpg',
-                    'https://randomuser.me/api/portraits/men/32.jpg',
-                    'https://randomuser.me/api/portraits/women/44.jpg',
-                    'https://randomuser.me/api/portraits/men/52.jpg',
+                    '/assets/images/student-1.jpg',
+                    '/assets/images/student-2.jpg',
+                    '/assets/images/student-3.jpg',
+                    '/assets/images/student-4.jpg',
                   ].map((src) => (
                     <img key={src} src={src} alt="Student" className="w-9 h-9 rounded-full border-2 border-white object-cover shadow-sm" />
                   ))}
                 </div>
                 <div>
                   <p className="text-sm font-bold text-gray-900">Trusted by 15,000+ Students</p>
-                  <p className="text-xs text-gray-500">4.8/5 Rating <span className="text-yellow-400">★★★★★</span></p>
+                  <p className="text-xs text-gray-500">4.9/5 Rating <span className="text-yellow-400">★★★★★</span></p>
                 </div>
               </div>
             </div>
 
             {/* Right banner image — transparent, no card/rectangle */}
-            <div className="relative lg:-mr-8 xl:-mr-16">
+            <div className="relative lg:-mr-8 xl:-mr-16 lg:-translate-x-10 xl:-translate-x-16">
               <img
                 src="/assets/images/Rejected.svg"
                 alt="What after loan rejected"
@@ -198,7 +197,7 @@ export default function BeyondRejectionPage() {
             <div className="pointer-events-none hidden md:block absolute left-[9%] right-[9%] top-8 h-[2px] bg-gradient-to-r from-[#6E00E0] via-[#b14bf0] to-[#6E00E0] opacity-40" />
             {HELP_STEPS.map((step, idx) => (
               <div key={step.title} className="relative text-center">
-                <div className="relative z-10 mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#8b2fe8] to-[#6d17c9] text-white shadow-[0_14px_30px_rgba(110,0,224,0.40)] ring-4 ring-white">
+                <div className="relative z-10 mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#8b2fe8] to-[#6d17c9] text-white shadow-[0_14px_30px_rgba(110,0,224,0.40)] ring-2 ring-white">
                   {step.icon}
                 </div>
                 <h3 className="font-extrabold text-gray-900 text-[15px] mb-2 leading-tight">{step.title}</h3>
@@ -208,48 +207,6 @@ export default function BeyondRejectionPage() {
                 )}
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ FAQ ════════════════════════════════════════════════ */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
-          <div className="space-y-3">
-            {COMMON_QUESTIONS.map((item, idx) => (
-              <details key={item.q}
-                className="group rounded-2xl border border-[#e6dcfb] bg-gradient-to-br from-white to-[#faf7ff] open:shadow-[0_12px_30px_rgba(111,30,208,0.12)] transition-all"
-                open={idx === 0}>
-                <summary className="list-none cursor-pointer p-5 md:p-6">
-                  <div className="flex items-start gap-4">
-                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#8b2fe8] to-[#6d17c9] text-white text-xs font-bold">{idx + 1}</span>
-                    <h3 className="flex-1 text-lg font-extrabold text-[#1f2937] pr-6">{item.q}</h3>
-                    <span className="mt-1 text-[#6f1ed0] text-lg font-bold transition-transform duration-300 group-open:rotate-45">+</span>
-                  </div>
-                </summary>
-                <div className="px-5 md:px-6 pb-6 pl-[4.15rem] text-gray-600 leading-relaxed">{item.a}</div>
-              </details>
-            ))}
-          </div>
-
-          <div>
-            <span className="inline-flex items-center rounded-full border border-[#d8c5fb] bg-[#f7f2ff] text-[#6f1ed0] text-xs font-bold uppercase tracking-widest px-4 py-1.5 mb-4">Common Questions</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#1f1147] leading-tight mb-4">Still Unsure? Let&apos;s Clear Every Doubt.</h2>
-            <p className="text-gray-600 leading-relaxed mb-6">Quick answers to the most asked questions after a loan rejection. No fluff, only practical clarity.</p>
-            <div className="flex flex-wrap gap-2">
-              {['No guesswork', 'Honest guidance', 'Student-first'].map((tag) => (
-                <span key={tag} className="inline-flex items-center rounded-full bg-gradient-to-r from-[#f2eaff] to-[#eef8ff] border border-[#e1d6fb] px-3 py-1.5 text-xs font-semibold text-[#53308d]">{tag}</span>
-              ))}
-            </div>
-            <div className="mt-6 rounded-2xl border border-[#e1d7fb] bg-gradient-to-r from-[#f8f3ff] to-[#eef8ff] p-5">
-              <h3 className="text-lg font-extrabold text-[#2b1f56] mb-3">What You Get After Review</h3>
-              <div className="space-y-2.5 text-sm text-gray-700">
-                <p className="flex items-start gap-2"><span className="text-base">🛡️</span><span>Risk report with exact rejection triggers</span></p>
-                <p className="flex items-start gap-2"><span className="text-base">🧭</span><span>Custom lender direction based on your profile</span></p>
-                <p className="flex items-start gap-2"><span className="text-base">📈</span><span>Approval-focused checklist for faster comeback</span></p>
-              </div>
-            </div>
-            <p className="mt-5 text-sm text-gray-600 leading-relaxed">✨ Real guidance, real timelines, and a practical plan you can act on immediately.</p>
           </div>
         </div>
       </section>
@@ -318,9 +275,38 @@ export default function BeyondRejectionPage() {
         </div>
       </section>
 
-      {/* ═══ Testimonials + Refer a Friend ══════════════════════ */}
+      {/* ═══ Testimonials ═══════════════════════════════════════ */}
       <TestimonialSection />
-      <ReferFriendSection />
+
+      {/* ═══ FAQ ════════════════════════════════════════════════ */}
+      <section className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mb-12">
+          <div className="flex justify-center mb-4">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#e9ddff] bg-[#f7f2ff] px-4 py-1.5 text-[#6f1ed0] text-xs md:text-sm font-semibold">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>
+              Quick Answers
+            </span>
+          </div>
+          <h2 className="text-[34px] md:text-[40px] font-bold text-[#2D0B5A]">
+            Frequently Asked Questions
+          </h2>
+        </div>
+        <div className="space-y-3">
+          {COMMON_QUESTIONS.map((item, idx) => (
+            <details key={item.q}
+              className="group rounded-2xl border border-[#eadfff] bg-white shadow-[0_8px_22px_rgba(110,0,224,0.08)] open:shadow-[0_12px_30px_rgba(111,30,208,0.12)] transition-all"
+              open={idx === 0}>
+              <summary className="list-none cursor-pointer py-5 px-5 md:px-6 hover:bg-[#faf7ff] transition-colors rounded-2xl">
+                <div className="flex items-center gap-4">
+                  <h3 className="flex-1 text-[17px] md:text-[19px] font-medium text-gray-900">{item.q}</h3>
+                  <svg className="w-5 h-5 shrink-0 text-[#6f1ed0] transition-transform duration-300 group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
+                </div>
+              </summary>
+              <div className="px-5 md:px-6 pt-1 pb-6 text-[15px] text-gray-600 leading-relaxed border-t border-[#f0e8ff] bg-[#fdfbff]">{item.a}</div>
+            </details>
+          ))}
+        </div>
+      </section>
     </PageShell>
   );
 }

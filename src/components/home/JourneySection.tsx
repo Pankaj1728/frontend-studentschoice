@@ -116,7 +116,7 @@ export function JourneySection() {
                 <img
                   src={card.image}
                   alt={card.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
                 />
                 {/* Tag badge */}
                 <div className="absolute top-4 left-4">

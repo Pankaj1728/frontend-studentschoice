@@ -77,7 +77,7 @@ export function BeyondRejectionHero() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-            className="relative lg:-mr-8 xl:-mr-16 lg:-translate-x-10 xl:-translate-x-16"
+            className="relative lg:-mr-8 xl:-mr-16 lg:-translate-x-2 xl:-translate-x-4"
           >
             <img
               src="/assets/images/Rejected.svg"

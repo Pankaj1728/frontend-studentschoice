@@ -128,14 +128,14 @@ export default function BeyondRejectionPage() {
       </section>
 
       {/* ═══ Get Your Case Reviewed by Experts ══════════════════ */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="rounded-3xl border border-[#e9defc] bg-gradient-to-br from-[#ffffff] via-[#faf6ff] to-[#f3ebff] p-7 md:p-10 shadow-[0_16px_40px_rgba(110,0,224,0.1)]">
-          <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 items-start">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="rounded-3xl border border-[#e9defc] bg-gradient-to-br from-[#ffffff] via-[#faf6ff] to-[#f3ebff] p-6 md:p-8 shadow-[0_16px_40px_rgba(110,0,224,0.1)]">
+          <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 items-start">
             <div>
-              <span className="inline-block bg-[#6E00E0]/10 text-[#6E00E0] text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">Beyond Rejection</span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 leading-tight">Get Your Case Reviewed by Experts</h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">Share your details and we&apos;ll provide a free assessment of your rejection case and next steps.</p>
-              <div className="space-y-3">
+              <span className="inline-block bg-[#6E00E0]/10 text-[#6E00E0] text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-3">Beyond Rejection</span>
+              <h2 className="text-2xl md:text-[32px] font-extrabold text-gray-900 mb-3 leading-tight">Get Your Case Reviewed by Experts</h2>
+              <p className="text-gray-600 text-base leading-relaxed mb-5">Share your details and we&apos;ll provide a free assessment of your rejection case and next steps.</p>
+              <div className="space-y-2.5">
                 {['100% Confidential Review', 'Response within 24 hours', 'No obligation consultation'].map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white text-xs font-bold">✓</span>
@@ -144,8 +144,8 @@ export default function BeyondRejectionPage() {
                 ))}
               </div>
 
-              <div className="mt-6 rounded-2xl border border-[#ebe4fb] bg-white/80 p-5">
-                <p className="text-gray-700 leading-relaxed">From first rejection to final approval, our experts walk with you at every step. You get a clear, personalized action plan so you can reapply with confidence instead of guesswork.</p>
+              <div className="mt-5 rounded-2xl border border-[#ebe4fb] bg-white/80 p-4">
+                <p className="text-gray-700 text-[15px] leading-relaxed">From first rejection to final approval, our experts walk with you at every step. You get a clear, personalized action plan so you can reapply with confidence instead of guesswork.</p>
                 <div className="mt-4 grid sm:grid-cols-3 gap-3">
                   <div className="rounded-xl bg-[#f5efff] border border-[#e6d9fb] p-3 text-center"><div className="text-2xl mb-1">🧠</div><p className="text-xs font-semibold text-[#5e2ab4]">Expert Diagnosis</p></div>
                   <div className="rounded-xl bg-[#eef9ff] border border-[#d6efff] p-3 text-center"><div className="text-2xl mb-1">📋</div><p className="text-xs font-semibold text-[#1b5f8a]">Action Checklist</p></div>
@@ -154,34 +154,34 @@ export default function BeyondRejectionPage() {
               </div>
             </div>
 
-            <form className="grid sm:grid-cols-2 gap-4 rounded-2xl border border-[#ebe4fb] bg-white/90 p-5 md:p-6">
+            <form className="grid sm:grid-cols-2 gap-3.5 rounded-2xl border border-[#ebe4fb] bg-white/90 p-5 md:p-6">
               <div className="sm:col-span-2">
                 <label className="text-sm font-semibold text-gray-700 block mb-1.5">Student Name *</label>
-                <input type="text" placeholder="Enter your full name" className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
+                <input type="text" placeholder="Enter your full name" className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
               </div>
               <div>
                 <label className="text-sm font-semibold text-gray-700 block mb-1.5">Phone Number *</label>
-                <input type="tel" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
+                <input type="tel" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
               </div>
               <div>
                 <label className="text-sm font-semibold text-gray-700 block mb-1.5">Country *</label>
-                <input type="text" placeholder="Study destination" className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
+                <input type="text" placeholder="Study destination" className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
               </div>
               <div>
                 <label className="text-sm font-semibold text-gray-700 block mb-1.5">University *</label>
-                <input type="text" placeholder="University name" className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
+                <input type="text" placeholder="University name" className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
               </div>
               <div>
                 <label className="text-sm font-semibold text-gray-700 block mb-1.5">Rejected By *</label>
-                <input type="text" placeholder="Bank/NBFC name" className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
+                <input type="text" placeholder="Bank/NBFC name" className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
               </div>
               <div className="sm:col-span-2">
                 <label className="text-sm font-semibold text-gray-700 block mb-1.5">Loan Amount *</label>
-                <input type="text" placeholder="Amount needed (in ₹)" className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
+                <input type="text" placeholder="Amount needed (in ₹)" className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors" />
               </div>
               <div className="sm:col-span-2">
                 <label className="text-sm font-semibold text-gray-700 block mb-1.5">Message</label>
-                <textarea rows={4} placeholder="Brief description of your situation" className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors resize-none" />
+                <textarea rows={3} placeholder="Brief description of your situation" className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#6E00E0] transition-colors resize-none" />
               </div>
               <div className="sm:col-span-2">
                 <button type="button" className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#6E00E0] to-[#6f1ed0] text-white font-bold px-8 py-3.5 rounded-xl shadow-[0_12px_30px_rgba(110,0,224,0.28)] hover:brightness-110 transition-all">Review My Case</button>

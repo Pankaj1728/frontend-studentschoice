@@ -46,24 +46,24 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-[1400px] mx-auto rounded-[28px] overflow-hidden relative min-h-[300px] md:min-h-[380px] flex items-center shadow-2xl transition-all hover:shadow-purple-500/30"
+          className="max-w-[1400px] mx-auto rounded-[28px] overflow-hidden relative min-h-[240px] md:min-h-[300px] flex items-center shadow-2xl transition-all hover:shadow-purple-500/30"
           style={{
             backgroundImage: `url('/assets/images/USA%20Banner.svg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
-          <div className="relative z-10 px-8 md:px-14 lg:px-20 w-full">
+          <div className="relative z-10 px-5 md:px-8 lg:px-10 w-full">
             <div className="max-w-2xl">
-              <h1 className="text-3xl md:text-5xl font-black text-white mb-5 drop-shadow-lg leading-tight tracking-tight">
+              <h1 className="text-2xl md:text-4xl font-black text-white mb-3 drop-shadow-lg leading-tight tracking-tight">
                 {p.tagline}
               </h1>
-              <p className="text-white/85 text-sm md:text-lg font-semibold mb-8 max-w-xl leading-relaxed drop-shadow-md">
+              <p className="text-white/85 text-sm md:text-base font-semibold mb-6 max-w-lg leading-relaxed drop-shadow-md">
                 Discover top-ranked universities, explore scholarships, understand tuition costs, and plan your complete {p.country} journey with expert guidance from Students Choice.
               </p>
 
               <button type="button" onClick={() => open(`Explore ${p.country} University`)}
-                className="inline-flex items-center bg-white text-[#6E00E0] font-extrabold px-7 py-3 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all text-sm md:text-base group"
+                className="inline-flex items-center bg-white text-[#6E00E0] font-extrabold px-6 py-2.5 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all text-sm md:text-base group"
               >
                 Explore {p.country} University
                 <span className="ml-2 group-hover:translate-x-1 transition-transform text-lg">→</span>

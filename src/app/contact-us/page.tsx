@@ -150,7 +150,7 @@ export default function ContactUsPage() {
       </section>
 
       {/* ── Contact Details + Booking form ───────────────────── */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 mb-16">
         <div className="grid lg:grid-cols-2 gap-7">
           {/* Contact Details card */}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}

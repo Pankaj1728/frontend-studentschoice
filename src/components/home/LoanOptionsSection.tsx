@@ -23,8 +23,8 @@ const rightBanks = [
 
 function BankCard({ bank }: { bank: { name: string; logo: string } }) {
   return (
-    <div className="bg-white rounded-2xl px-7 py-5 h-24 md:h-[104px] flex items-center justify-center shadow-[0_8px_24px_rgba(91,23,168,0.15)]">
-      <img src={bank.logo} alt={bank.name} className="max-h-full max-w-full w-auto object-contain" />
+    <div className="bg-white rounded-2xl px-6 py-3 h-24 md:h-[100px] flex items-center justify-center shadow-[0_8px_24px_rgba(91,23,168,0.15)]">
+      <img src={bank.logo} alt={bank.name} className="max-h-14 md:max-h-16 max-w-[88%] w-auto object-contain" />
     </div>
   );
 }
@@ -38,13 +38,13 @@ const IconArrow = () => (
 export function LoanOptionsSection() {
   const { open } = useLeadForm();
   return (
-    <section className="w-full bg-white py-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-white py-16 px-6 sm:px-10 lg:px-24">
       <motion.div
         initial={{ opacity: 0, scale: 0.97 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="max-w-7xl mx-auto rounded-[40px] p-8 md:p-12 relative overflow-hidden shadow-2xl"
+        className="max-w-6xl mx-auto rounded-[40px] p-8 md:p-10 relative overflow-hidden shadow-2xl"
         style={{
           background:
             'radial-gradient(ellipse 85% 95% at 50% 50%, #f4ecfd 0%, #e0c9f8 28%, #b377ef 60%, #8a2be2 100%)',
@@ -61,7 +61,7 @@ export function LoanOptionsSection() {
             <div className="grid grid-cols-1 gap-5 lg:hidden">
               {leftBanks.map((bank) => <BankCard key={bank.name} bank={bank} />)}
             </div>
-            <div className="hidden lg:block h-[480px] overflow-hidden">
+            <div className="hidden lg:block h-[430px] overflow-hidden">
               <div className="flex flex-col gap-5 animate-logo-scroll-up will-change-transform">
                 {[...leftBanks, ...leftBanks].map((bank, idx) => <BankCard key={`l-${idx}`} bank={bank} />)}
               </div>
@@ -88,7 +88,7 @@ export function LoanOptionsSection() {
             <div className="grid grid-cols-1 gap-5 lg:hidden">
               {rightBanks.map((bank) => <BankCard key={bank.name} bank={bank} />)}
             </div>
-            <div className="hidden lg:block h-[480px] overflow-hidden">
+            <div className="hidden lg:block h-[430px] overflow-hidden">
               <div className="flex flex-col gap-5 animate-logo-scroll-down will-change-transform">
                 {[...rightBanks, ...rightBanks].map((bank, idx) => <BankCard key={`r-${idx}`} bank={bank} />)}
               </div>

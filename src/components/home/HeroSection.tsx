@@ -48,7 +48,7 @@ function HeroStatsRow() {
   const values = [v0, v1, v2];
 
   return (
-    <div ref={ref} className="relative mt-10">
+    <div ref={ref} className="relative mt-8">
       <div className="relative flex items-stretch divide-x divide-[#e6d9fb]">
         {HERO_STATS.map((stat, i) => (
           <div key={stat.key} className="px-6 first:pl-0 text-center">
@@ -77,12 +77,12 @@ export function HeroSection() {
   const badge = APPROVAL_BADGES[badgeIndex];
 
   return (
-    <section className="relative w-full bg-white overflow-hidden pt-12 pb-20">
+    <section className="relative w-full bg-white overflow-hidden pt-10 pb-12">
       <div className="pointer-events-none absolute -top-24 -left-20 w-72 h-72 rounded-full bg-[#6E00E0]/10 blur-3xl" />
       <div className="pointer-events-none absolute top-36 right-0 w-80 h-80 rounded-full bg-fuchsia-200/30 blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-10 items-center min-h-[560px]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center min-h-[500px]">
 
           {/* Left Content */}
           <motion.div
@@ -92,7 +92,7 @@ export function HeroSection() {
             className="flex flex-col z-10"
           >
             {/* Tagline */}
-            <div className="flex items-center gap-2 mb-5">
+            <div className="flex items-center gap-2 mb-4">
               <IconStarFilled className="text-yellow-400" size={20} />
               <span className="text-[#15112b] font-semibold text-[15px] md:text-base">
                 Your Ambition, Our Expertise, Global Success
@@ -100,7 +100,7 @@ export function HeroSection() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl md:text-[56px] font-black leading-[1.06] tracking-tight mb-6">
+            <h1 className="text-4xl md:text-[48px] font-black leading-[1.08] tracking-tight mb-5">
               <span className="bg-gradient-to-br from-[#6E00E0] to-[#6f1ed0] bg-clip-text text-transparent">Get Guided by India&apos;s</span>
               <br />
               <span className="text-[#520dd8]">Trusted Study</span>
@@ -109,20 +109,20 @@ export function HeroSection() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-gray-600 text-lg leading-relaxed mb-8 max-w-xl">
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6 max-w-xl">
               From choosing the right university to securing your education loan, we support you at every step of your journey.
             </p>
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
-              <button onClick={() => open('Book Free Consultation — Hero')} className="inline-flex items-center justify-center font-bold px-8 h-14 rounded-full text-white bg-[#520dd8] hover:bg-[#8c52ff] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(82,13,216,0.35)]">
+              <button onClick={() => open('Book Free Consultation — Hero')} className="inline-flex items-center justify-center font-bold px-8 h-12 rounded-full text-white bg-[#520dd8] hover:bg-[#8c52ff] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(82,13,216,0.35)]">
                 Book Free Consultation
               </button>
               <a
                 href="https://wa.me/919801821680?text=Hello%20Students%20Choice!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 justify-center font-bold px-8 h-14 rounded-full text-white bg-[#25D366] hover:bg-[#1faa55] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(37,211,102,0.35)]"
+                className="inline-flex items-center gap-2 justify-center font-bold px-8 h-12 rounded-full text-white bg-[#25D366] hover:bg-[#1faa55] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(37,211,102,0.35)]"
               >
                 <IconBrandWhatsapp size={22} /> WhatsApp
               </a>
@@ -132,7 +132,7 @@ export function HeroSection() {
             <HeroStatsRow />
 
             {/* Approval Notification Box */}
-            <div className="mt-8 relative self-start">
+            <div className="mt-6 relative self-start">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={badge.name}
@@ -168,7 +168,7 @@ export function HeroSection() {
                 <img
                 src="/assets/images/hero-banner.svg"
                 alt="Student Study Abroad Consultancy"
-                className="w-full max-w-[720px] lg:scale-110 lg:-mr-6 h-auto object-contain animate-float drop-shadow-2xl"
+                className="w-full max-w-[760px] lg:scale-110 lg:-mr-6 h-auto object-contain animate-float drop-shadow-2xl"
                 draggable="false"
               />
             </div>

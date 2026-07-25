@@ -78,7 +78,7 @@ export function TestimonialSection() {
 
   return (
     <section className="w-full bg-white pt-20 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <h2 className="text-center text-[32px] md:text-[44px] font-black mb-10 tracking-tight">
           What <span className="bg-gradient-to-r from-[#6E00E0] to-[#b14bf0] bg-clip-text text-transparent">Students Say</span> About Us !
         </h2>

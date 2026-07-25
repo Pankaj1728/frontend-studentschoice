@@ -29,7 +29,7 @@ const faqs = [
 
 export function FaqSection() {
   return (
-    <section className="w-full bg-white pt-20 pb-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section className="w-full bg-white pt-20 pb-10 px-6 sm:px-10 lg:px-16 relative overflow-hidden">
       <div className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 w-[28rem] h-[28rem] rounded-full bg-[#6E00E0]/8 blur-3xl"></div>
       <motion.div 
         initial={{ opacity: 0, y: 30 }}

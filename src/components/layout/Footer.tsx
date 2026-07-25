@@ -18,23 +18,26 @@ export function Footer() {
         <div className="relative w-full pt-10">
 
           {/* Animated Airplane flying on the top border of the card */}
-          <div className="absolute left-0 right-0 z-20 pointer-events-none overflow-visible"
+          <div className="absolute z-20 pointer-events-none overflow-visible"
             style={{
-              top: '40px', // matches the pt-10 of the parent, so it sits exactly on the card top border
+              top: '40px', // sits exactly on the card top border
+              left: '50%',
+              width: '100vw',
+              marginLeft: '-50vw', // full-bleed: span the whole viewport so the plane wraps fully off-screen
             }}>
             <style>{`
               @keyframes fly-plane {
                 0% {
-                  transform: translate(-160px, -72%);
+                  transform: translate(-100%, -72%);
                 }
                 100% {
-                  transform: translate(calc(100vw + 160px), -72%);
+                  transform: translate(100vw, -72%);
                 }
               }
             `}</style>
-            <div className="absolute z-20 flex justify-center items-center"
+            <div className="absolute left-0 z-20 flex justify-center items-center"
               style={{
-                animation: 'fly-plane 15s linear infinite',
+                animation: 'fly-plane 16s linear infinite',
               }}>
               <img
                 src="/assets/images/Plane PNG.png"

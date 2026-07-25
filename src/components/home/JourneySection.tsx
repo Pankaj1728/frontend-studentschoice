@@ -67,7 +67,7 @@ const cardVariants = {
 export function JourneySection() {
   const { open } = useLeadForm();
   return (
-    <section className="w-full relative overflow-hidden py-24 px-4 sm:px-6 lg:px-8"
+    <section className="w-full relative overflow-hidden py-10 px-6 sm:px-10 lg:px-16"
       style={{ background: 'linear-gradient(135deg, #faf7ff 0%, #f3ebff 50%, #fdf8ff 100%)' }}
     >
       {/* Decorative blobs */}
@@ -82,16 +82,16 @@ export function JourneySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
-          <span className="inline-block bg-[#f3ebff] text-[#6E00E0] text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
+          <span className="inline-block bg-[#f3ebff] text-[#6E00E0] text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-3">
             Who We Serve
           </span>
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
+          <h2 className="text-3xl md:text-[42px] font-black text-gray-900 mb-3 leading-tight">
             Start Your Journey{' '}
             <span className="text-[#6E00E0]">With Students Choice</span>
           </h2>
-          <p className="text-gray-500 text-lg max-w-xl mx-auto">
+          <p className="text-gray-500 text-base md:text-lg max-w-xl mx-auto">
             Whether you&apos;re a student, consultant, or institution — we have the right solution and support for your success.
           </p>
         </motion.div>
@@ -102,7 +102,7 @@ export function JourneySection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
           {cards.map((card, idx) => (
             <motion.div
@@ -112,7 +112,7 @@ export function JourneySection() {
               className="group relative bg-white rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(110,0,224,0.10)] border border-[#ede8f7] flex flex-col"
             >
               {/* Image */}
-              <div className="relative h-52 overflow-hidden">
+              <div className="relative h-40 overflow-hidden">
                 <img
                   src={card.image}
                   alt={card.title}
@@ -133,16 +133,16 @@ export function JourneySection() {
               </div>
 
               {/* Content */}
-              <div className="p-7 flex flex-col flex-grow">
-                <h3 className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[#6E00E0] transition-colors">
+              <div className="p-5 flex flex-col flex-grow">
+                <h3 className="text-xl font-black text-gray-900 mb-2 group-hover:text-[#6E00E0] transition-colors">
                   {card.title}
                 </h3>
-                <p className="text-gray-500 text-[15px] leading-relaxed mb-5">
+                <p className="text-gray-500 text-[14px] leading-relaxed mb-3">
                   {card.description}
                 </p>
 
                 {/* Feature list */}
-                <ul className="space-y-3 mb-7 flex-grow">
+                <ul className="space-y-2 mb-4 flex-grow">
                   {card.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-center gap-3 text-gray-700 text-[15px]">
                       <span className={`flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br ${card.color} flex items-center justify-center`}>

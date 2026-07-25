@@ -44,25 +44,25 @@ const itemVariants = {
 export function LoanSupportSection() {
   const { open } = useLeadForm();
   return (
-    <section className="w-full bg-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="w-full bg-white pt-6 pb-14 px-6 sm:px-10 lg:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center text-[32px] md:text-[38px] font-bold text-[#6E00E0] mb-16"
+          className="text-center text-[28px] md:text-[34px] font-bold text-[#6E00E0] mb-10"
         >
           End-to-End Overseas Education Loan Support
         </motion.h2>
 
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="w-full lg:w-[60%] flex flex-col gap-6 lg:gap-0 lg:pr-3 relative"
+            className="w-full lg:w-[52%] flex flex-col gap-6 lg:gap-0 lg:pr-3 relative"
           >
             {steps.map((step, idx) => (
               <motion.div
@@ -81,16 +81,16 @@ export function LoanSupportSection() {
                   </span>
                 </div>
 
-                <div className="flex-1 bg-[#F5F5F5] rounded-[24px] p-6 md:p-8 shadow-[0_8px_20px_rgba(110,0,224,0.08)] border border-[#ebe1ff] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.01] relative overflow-hidden">
+                <div className="flex-1 bg-[#F5F5F5] rounded-[24px] p-5 md:p-6 shadow-[0_8px_20px_rgba(110,0,224,0.08)] border border-[#ebe1ff] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.01] relative overflow-hidden">
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#6E00E0] via-[#a855f7] to-[#6E00E0]"></div>
                   <div className="absolute -right-10 -top-10 w-28 h-28 rounded-full bg-[#6E00E0]/8 blur-2xl pointer-events-none"></div>
-                  <h3 className="text-[20px] md:text-[22px] font-bold text-[#6E00E0] mb-3">
+                  <h3 className="text-[18px] md:text-[20px] font-bold text-[#6E00E0] mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-[14px] md:text-[16px] text-gray-600 leading-relaxed">
+                  <p className="text-[13px] md:text-[15px] text-gray-600 leading-relaxed">
                     {step.description}
                   </p>
-                  <div className="mt-5">
+                  <div className="mt-4">
                     <button
                       type="button"
                       onClick={() => open('Free Expert Consultation')}
@@ -110,7 +110,7 @@ export function LoanSupportSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="w-full lg:w-[45%] relative flex justify-center items-end min-h-[500px]"
+            className="w-full lg:w-[48%] relative flex justify-center items-end min-h-[440px]"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[560px] aspect-square rounded-full filter blur-[130px] opacity-20 -z-10"
               style={{ background: 'radial-gradient(circle, #9b30f0 0%, #6E00E0 55%, transparent 80%)' }}></div>
@@ -123,7 +123,7 @@ export function LoanSupportSection() {
             <div className="absolute bottom-[16%] left-[10%] w-16 h-16 rounded-full -z-10 opacity-70 blur-[2px]"
               style={{ background: 'linear-gradient(135deg, #9b30f0, #6E00E0)' }}></div>
 
-            <div className="relative z-10 w-full max-w-[460px] lg:-translate-x-6">
+            <div className="relative z-10 w-full max-w-[380px] lg:-translate-x-2">
               <img
                 src="/assets/images/End-to-End%20Overseas%20Education%20Loan%20Support.svg"
                 alt="End-to-End Overseas Education Loan Support"

@@ -230,7 +230,7 @@ export function ReferFriendSection() {
   );
 
   return (
-    <section className="w-full bg-white pb-16 px-4 sm:px-6 lg:px-8 mt-12 mb-0">
+    <section className="w-full bg-white pb-16 px-6 sm:px-10 lg:px-16 mt-12 mb-0">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

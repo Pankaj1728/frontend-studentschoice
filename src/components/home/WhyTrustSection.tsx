@@ -8,7 +8,7 @@ import { useLeadForm } from '@/components/lead/LeadModal';
 export function WhyTrustSection() {
   const { open } = useLeadForm();
   return (
-    <section className="w-full bg-white py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section className="w-full bg-white py-10 px-6 sm:px-10 lg:px-16 relative overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
         {/* Left Column: Image Area */}

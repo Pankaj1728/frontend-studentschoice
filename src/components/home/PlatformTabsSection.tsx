@@ -125,7 +125,7 @@ export function PlatformTabsSection() {
   const isUniversity = active.id === 'university';
 
   return (
-    <section className="w-full bg-white py-20 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-white pt-3 pb-8 px-6 sm:px-10 lg:px-16">
       <div className="max-w-7xl mx-auto">
 
         {/* ── Heading ── */}
@@ -134,12 +134,12 @@ export function PlatformTabsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-12"
+          className="text-center mb-4"
         >
-          <p className="text-[18px] md:text-[22px] font-bold text-[#6E00E0] mb-2">
+          <p className="text-[17px] md:text-[20px] font-bold text-[#6E00E0] mb-1">
             Your All-in One Platform for Studying Abroad
           </p>
-          <h2 className="text-[34px] md:text-[52px] font-extrabold text-[#1a0040] leading-tight">
+          <h2 className="text-[30px] md:text-[42px] font-extrabold text-[#1a0040] leading-tight">
             Plan, and Apply with Student&apos;s Choice
           </h2>
         </motion.div>
@@ -150,7 +150,7 @@ export function PlatformTabsSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="flex justify-center mb-10"
+          className="flex justify-center mb-5"
         >
           <div className="inline-flex bg-[#f5f0ff] rounded-full p-1.5 gap-1 shadow-sm">
             {tabData.map((tab) => (
@@ -178,7 +178,7 @@ export function PlatformTabsSection() {
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
             className="relative w-full rounded-[32px] overflow-hidden bg-[#f5f0ff] shadow-lg"
-            style={{ minHeight: 400 }}
+            style={{ minHeight: 320 }}
           >
             <div
               className={`flex flex-col ${
@@ -187,14 +187,14 @@ export function PlatformTabsSection() {
             >
 
               {/* ── Left: Text Content ── */}
-              <div className="flex flex-col justify-center gap-5 p-8 md:p-12 lg:p-14 w-full lg:w-[55%]">
+              <div className="flex flex-col justify-center gap-4 p-6 md:p-8 lg:p-10 w-full lg:w-[55%]">
                 {/* Badge */}
                 <span className="inline-flex items-center gap-2 self-start bg-[#ede9fe] text-[#7c3aed] text-[13px] font-semibold px-4 py-1.5 rounded-full">
                   {active.badge}
                 </span>
 
                 {/* Title */}
-                <h3 className="text-[30px] md:text-[40px] font-extrabold text-[#1a0040] leading-[1.15] tracking-tight">
+                <h3 className="text-[28px] md:text-[34px] font-extrabold text-[#1a0040] leading-[1.15] tracking-tight">
                   {active.title}{' '}
                   <span className="text-[#7c3aed]">{active.highlight}</span>
                   {active.titleEnd && (
@@ -213,23 +213,18 @@ export function PlatformTabsSection() {
                   {active.description}
                 </p>
 
-                {/* Features */}
-                {isUniversity ? (
-                  /* University: vertical cards in middle col (done below) — here just features for loan/insurance */
-                  null
-                ) : (
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-2">
-                    {active.features?.map((f, i) => (
-                      <div key={i} className="flex flex-col items-start gap-1">
-                        <div className="w-10 h-10 rounded-xl bg-[#ede9fe] flex items-center justify-center text-[18px] mb-1">
-                          {f.icon}
-                        </div>
-                        <p className="text-[13px] font-bold text-[#1a0040]">{f.title}</p>
-                        <p className="text-[12px] text-gray-500 leading-snug">{f.desc}</p>
+                {/* Features (mobile only — desktop shows the middle cards) */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-2 lg:hidden">
+                  {active.features?.map((f, i) => (
+                    <div key={i} className="flex flex-col items-start gap-1">
+                      <div className="w-10 h-10 rounded-xl bg-[#ede9fe] flex items-center justify-center text-[18px] mb-1">
+                        {f.icon}
                       </div>
-                    ))}
-                  </div>
-                )}
+                      <p className="text-[13px] font-bold text-[#1a0040]">{f.title}</p>
+                      <p className="text-[12px] text-gray-500 leading-snug">{f.desc}</p>
+                    </div>
+                  ))}
+                </div>
 
                 {/* CTA Buttons */}
                 <div className="flex flex-wrap gap-3 mt-4">
@@ -253,9 +248,9 @@ export function PlatformTabsSection() {
                 </div>
               </div>
 
-              {/* ── Middle: Feature Cards (University only) ── */}
-              {isUniversity && (
-                <div className="hidden lg:flex flex-col justify-center gap-4 py-14 px-4 w-[25%]">
+              {/* ── Middle: Feature Cards (all tabs) ── */}
+              {(
+                <div className="hidden lg:flex flex-col justify-center gap-4 py-10 px-4 w-[25%]">
                   {active.features?.map((f, i) => (
                     <div
                       key={i}
@@ -280,7 +275,7 @@ export function PlatformTabsSection() {
               <div
                 className={`relative w-full ${
                   isUniversity ? 'lg:w-[45%]' : 'lg:w-[45%]'
-                } min-h-[320px] lg:min-h-[460px]`}
+                } min-h-[280px] lg:min-h-[360px]`}
               >
                 <Image
                   src={active.image}

@@ -41,12 +41,12 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
   return (
     <PageShell>
       {/* ── Hero ───────────────────────────────────────── */}
-      <section className="relative pt-10 pb-6 px-3 md:px-5">
+      <section className="relative pt-10 pb-6 px-6 sm:px-10 md:px-16 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-[1400px] mx-auto rounded-[28px] overflow-hidden relative min-h-[240px] md:min-h-[300px] flex items-center shadow-2xl transition-all hover:shadow-purple-500/30"
+          className="max-w-[1500px] mx-auto rounded-[28px] overflow-hidden relative min-h-[280px] md:min-h-[350px] flex items-center shadow-2xl transition-all hover:shadow-purple-500/30"
           style={{
             backgroundImage: `url('/assets/images/USA%20Banner.svg')`,
             backgroundSize: 'cover',
@@ -55,15 +55,15 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
         >
           <div className="relative z-10 px-5 md:px-8 lg:px-10 w-full">
             <div className="max-w-2xl">
-              <h1 className="text-2xl md:text-4xl font-black text-white mb-3 drop-shadow-lg leading-tight tracking-tight">
+              <h1 className="text-3xl md:text-5xl font-black text-white mb-3 drop-shadow-lg leading-tight tracking-tight">
                 {p.tagline}
               </h1>
-              <p className="text-white/85 text-sm md:text-base font-semibold mb-6 max-w-lg leading-relaxed drop-shadow-md">
+              <p className="text-white/85 text-sm md:text-base font-normal mb-6 max-w-lg leading-relaxed drop-shadow-md">
                 Discover top-ranked universities, explore scholarships, understand tuition costs, and plan your complete {p.country} journey with expert guidance from Students Choice.
               </p>
 
               <button type="button" onClick={() => open(`Explore ${p.country} University`)}
-                className="inline-flex items-center bg-white text-[#6E00E0] font-extrabold px-6 py-2.5 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all text-sm md:text-base group"
+                className="inline-flex items-center bg-white text-[#6E00E0] font-bold px-6 py-2.5 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all text-sm md:text-base group"
               >
                 Explore {p.country} University
                 <span className="ml-2 group-hover:translate-x-1 transition-transform text-lg">→</span>
@@ -103,22 +103,22 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="flex items-center gap-3 mb-10"
+            className="mb-10"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6E00E0] to-[#a855f7] flex items-center justify-center text-lg shadow-md shadow-purple-200">
-              ✨
-            </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#6E00E0] mb-0.5">At a Glance</p>
-              <h2 className="text-2xl font-extrabold text-gray-900">
-                Quick Insights About Studying in the{' '}
-                <span className="bg-gradient-to-r from-[#6E00E0] to-[#6c47ff] bg-clip-text text-transparent">{p.country}</span>
-              </h2>
-            </div>
+            <span className="inline-flex items-center gap-2 bg-[#f4eeff] text-[#6E00E0] text-[11px] font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full mb-4">
+              ✨ At a Glance
+            </span>
+            <h2 className="text-3xl md:text-[38px] font-extrabold text-gray-900 leading-[1.15]">
+              Quick Insights About Studying in the{' '}
+              <span className="bg-gradient-to-r from-[#6E00E0] to-[#6c47ff] bg-clip-text text-transparent">{p.country}</span>
+            </h2>
+            <p className="mt-2.5 text-gray-500 text-[15px] md:text-base font-normal">
+              Everything you need to know before starting your {p.country} study journey — at a glance.
+            </p>
           </motion.div>
 
           {/* Two-column layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 items-start">
 
             {/* LEFT — Table */}
             <motion.div
@@ -150,7 +150,7 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-lg flex-shrink-0">{icons[i % icons.length]}</span>
-                        <span className="text-sm font-semibold text-[#6b21a8] group-hover:text-[#6E00E0] transition-colors">{item.key}</span>
+                        <span className="text-[15px] font-semibold text-gray-800 group-hover:text-[#6E00E0] transition-colors">{item.key}</span>
                       </div>
                       <div className="text-right">
                         <span className="inline-block bg-[#f4eeff] text-[#7c3aed] text-sm font-extrabold px-3 py-1 rounded-lg group-hover:bg-[#6E00E0] group-hover:text-white transition-all duration-200">
@@ -177,18 +177,29 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#6E00E0] to-[#6c47ff] p-6 text-white shadow-xl shadow-purple-500/20"
+                className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#6E00E0] to-[#6c47ff] text-white shadow-xl shadow-purple-500/20"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/4" />
-                <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-2">Ready to move?</p>
-                <h3 className="text-xl font-extrabold leading-snug mb-3">Start Your {p.country} Study Journey Today</h3>
-                <p className="text-sm text-white/70 mb-5 leading-relaxed">Get personalised guidance from our expert consultants — completely free.</p>
-                <button type="button" onClick={() => open('Book Free Consultation')}
-                  className="inline-flex items-center gap-2 bg-white text-[#6E00E0] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-yellow-50 hover:scale-105 transition-all shadow-md"
-                >
-                  Book Free Consultation
-                  <span className="text-base">→</span>
-                </button>
+                {/* Country image on the right, fading into the gradient */}
+                <div className="absolute inset-y-0 right-0 w-[45%] pointer-events-none">
+                  <img
+                    src={`/assets/images/studyabroadcountry/${p.country.toUpperCase()}.png`}
+                    alt={`Study in ${p.country}`}
+                    className="w-full h-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#6E00E0] via-[#6E00E0]/75 to-transparent" />
+                </div>
+
+                <div className="relative z-10 p-6 max-w-[62%]">
+                  <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/80 mb-2"><span className="text-sm">🚀</span> Ready to move?</p>
+                  <h3 className="text-2xl font-extrabold leading-snug mb-3">Start Your {p.country} Study Journey <span className="text-yellow-300">Today!</span></h3>
+                  <p className="text-sm text-white/80 mb-5 leading-relaxed">Get personalised guidance from our expert consultants — completely free.</p>
+                  <button type="button" onClick={() => open('Book Free Consultation')}
+                    className="inline-flex items-center gap-2 bg-white text-[#6E00E0] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-yellow-50 hover:scale-105 transition-all shadow-md"
+                  >
+                    Book Free Consultation
+                    <span className="text-base">→</span>
+                  </button>
+                </div>
               </motion.div>
 
               {/* Why USA trust list */}
@@ -199,17 +210,20 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="rounded-2xl bg-white border border-purple-100 shadow-md shadow-purple-500/5 p-5"
               >
-                <p className="text-xs font-bold uppercase tracking-widest text-[#6E00E0] mb-4">Why Students Choose {p.country}</p>
-                <ul className="space-y-2.5">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="w-6 h-6 rounded-full bg-[#f4eeff] flex items-center justify-center text-[#6E00E0] text-xs">★</span>
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#6E00E0]">Why Students Choose {p.country}</p>
+                </div>
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-4">
                   {[
-                    { icon: '🏆', text: 'Home to MIT, Harvard, Stanford' },
-                    { icon: '🚀', text: '3-year OPT for STEM graduates' },
-                    { icon: '🌐', text: '1M+ international students' },
-                    { icon: '💡', text: 'World\'s #1 innovation hub' },
-                    { icon: '🤝', text: 'Diverse, multicultural campuses' },
+                    { icon: '🏛️', text: 'Home to MIT, Harvard, Stanford', bg: 'bg-[#eef2ff]' },
+                    { icon: '💡', text: "World's #1 innovation hub", bg: 'bg-[#fff7e6]' },
+                    { icon: '🏆', text: '3-year OPT for STEM graduates', bg: 'bg-[#fff1f0]' },
+                    { icon: '🏫', text: 'Diverse, multicultural campuses', bg: 'bg-[#f3e8ff]' },
+                    { icon: '🌐', text: '1M+ international students', bg: 'bg-[#e6f7ff]' },
                   ].map((pt, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm text-gray-700 font-medium">
-                      <span className="w-7 h-7 rounded-lg bg-[#f4eeff] flex items-center justify-center text-base flex-shrink-0">{pt.icon}</span>
+                    <li key={i} className="flex items-start gap-2.5 text-[13px] text-gray-700 font-medium leading-snug">
+                      <span className={`w-9 h-9 rounded-full ${pt.bg} flex items-center justify-center text-base flex-shrink-0`}>{pt.icon}</span>
                       {pt.text}
                     </li>
                   ))}
@@ -234,6 +248,121 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
               </motion.div>
             </div>
           </div>
+        </div>
+      </section>
+
+
+      {/* ── Tuition & Cost of Living ────────────────────── */}
+      <section className="relative py-14 px-6 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+            className="mb-10"
+          >
+            <span className="inline-flex items-center gap-2 bg-[#f4eeff] text-[#6E00E0] text-[11px] font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full mb-4">
+              💰 Cost Breakdown
+            </span>
+            <h2 className="text-3xl md:text-[38px] font-extrabold text-gray-900 leading-[1.15]">
+              Tuition &amp; Cost of Living in the{' '}
+              <span className="bg-gradient-to-r from-[#6E00E0] to-[#6c47ff] bg-clip-text text-transparent">{p.country}</span>
+            </h2>
+            <p className="mt-2.5 text-gray-500 text-[15px] md:text-base font-normal">
+              A clear, no-surprises breakdown of tuition, living expenses and city-wise budgets — everything you need to plan your finances.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            {/* Tuition card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+              className="rounded-2xl bg-white border border-purple-100 shadow-lg shadow-purple-500/5 p-6 md:p-7"
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <span className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#6E00E0] to-[#a855f7] flex items-center justify-center text-lg text-white shadow-md shadow-purple-200">🎓</span>
+                <h3 className="text-xl font-extrabold text-gray-900">Average Tuition Fees</h3>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { label: 'Public · Undergraduate', value: '$8,000 – $35,000 / yr' },
+                  { label: 'Public · Postgraduate', value: '$10,000 – $35,000 / yr' },
+                  { label: 'Private · Undergraduate', value: '$25,000 – $55,000 / yr' },
+                  { label: 'Private · Postgraduate', value: '$22,000 – $50,000 / yr' },
+                  { label: 'MBA · Top Schools', value: 'Up to $70,000 / yr' },
+                ].map((r) => (
+                  <div key={r.label} className="flex items-center justify-between gap-3 border-b border-purple-50 pb-3 last:border-0 last:pb-0">
+                    <span className="text-[14px] font-semibold text-gray-700">{r.label}</span>
+                    <span className="text-[13px] font-extrabold text-[#7c3aed] bg-[#f4eeff] px-3 py-1 rounded-lg whitespace-nowrap">{r.value}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Living card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+              className="rounded-2xl bg-white border border-purple-100 shadow-lg shadow-purple-500/5 p-6 md:p-7"
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <span className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#6E00E0] to-[#a855f7] flex items-center justify-center text-lg text-white shadow-md shadow-purple-200">🏠</span>
+                <h3 className="text-xl font-extrabold text-gray-900">Cost of Living</h3>
+              </div>
+              <div className="mb-4 rounded-xl bg-[#faf7ff] border border-purple-100 px-4 py-3 flex items-center justify-between">
+                <span className="text-[14px] font-semibold text-gray-700">Average total</span>
+                <span className="text-[15px] font-extrabold text-[#6E00E0] whitespace-nowrap">$10,000 – $25,000 / yr</span>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { icon: '🛏️', label: 'Accommodation', value: '$9,800 – $11,100 / yr' },
+                  { icon: '🍔', label: 'Food', value: '$250 – $600 / mo' },
+                  { icon: '💡', label: 'Utilities', value: '$100 – $150 / mo' },
+                  { icon: '🚌', label: 'Transport', value: '$50 – $150 / mo' },
+                  { icon: '🩺', label: 'Health Insurance', value: '$700 – $1,100 / yr' },
+                ].map((r) => (
+                  <div key={r.label} className="flex items-center justify-between gap-3">
+                    <span className="flex items-center gap-2.5 text-[14px] font-semibold text-gray-700"><span className="text-base">{r.icon}</span>{r.label}</span>
+                    <span className="text-[13px] font-bold text-gray-500 whitespace-nowrap">{r.value}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* City-wise strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.15 }}
+            className="rounded-2xl bg-gradient-to-br from-[#faf7ff] to-[#f0e8ff] border border-purple-100 p-6 md:p-7 mb-6"
+          >
+            <p className="text-xs font-bold uppercase tracking-widest text-[#6E00E0] mb-4">Approx. Monthly Budget by City</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              {[
+                { city: 'New York', cost: '~$3,300' },
+                { city: 'San Francisco', cost: '~$4,000' },
+                { city: 'Boston', cost: '~$3,316' },
+                { city: 'Los Angeles', cost: '~$4,000' },
+                { city: 'Atlanta', cost: '~$2,200' },
+                { city: 'Dallas', cost: '~$2,000' },
+              ].map((c) => (
+                <div key={c.city} className="rounded-xl bg-white border border-purple-100 px-3 py-3 text-center shadow-sm">
+                  <p className="text-[13px] font-bold text-gray-800 leading-tight">{c.city}</p>
+                  <p className="text-[13px] font-extrabold text-[#6E00E0] mt-1">{c.cost}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Pro tip */}
+          <div className="rounded-2xl bg-gradient-to-r from-[#6E00E0] to-[#6c47ff] p-5 md:p-6 text-white flex items-start gap-3">
+            <span className="text-xl flex-shrink-0">💡</span>
+            <div>
+              <p className="font-bold mb-1">Pro tip to save big</p>
+              <p className="text-sm text-white/85 leading-relaxed">Share off-campus accommodation, apply early for on-campus jobs &amp; assistantships, and compare university ROI before you apply — small choices, big savings.</p>
+            </div>
+          </div>
+
+          <p className="mt-4 text-[11px] text-gray-400 font-medium">* Figures are indicative and vary by university, city and lifestyle. Verify with institutions directly.</p>
         </div>
       </section>
 

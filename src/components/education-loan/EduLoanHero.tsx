@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IconStarFilled, IconShieldCheck, IconBrandWhatsapp } from '@tabler/icons-react';
+import { IconSparkles, IconShieldCheck, IconBrandWhatsapp } from '@tabler/icons-react';
 
 const APPROVAL_BADGES = [
   { name: 'Priya Sharma', amount: '₹85 Lakh', bank: 'ICICI Bank', flag: 'https://flagcdn.com/w40/au.png', country: 'Australia' },
@@ -35,31 +35,33 @@ export function EduLoanHero() {
   const badge = APPROVAL_BADGES[badgeIndex];
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#faf7ff] via-white to-[#f3ebff] pt-10 pb-20">
+    <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#faf7ff] via-white to-[#f3ebff] pt-8 pb-10">
       {/* BG Orbs */}
       <div className="pointer-events-none absolute -top-28 -left-24 w-96 h-96 rounded-full bg-[#6E00E0]/10 blur-3xl" />
       <div className="pointer-events-none absolute top-40 right-0 w-80 h-80 rounded-full bg-fuchsia-200/30 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-1/3 w-64 h-64 rounded-full bg-[#6E00E0]/05 blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 min-h-[580px]">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 min-h-[500px]">
 
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="w-full lg:w-[55%] flex flex-col z-10 pt-6"
+            className="w-full lg:w-[55%] flex flex-col z-10 pt-2"
           >
             {/* Eyebrow tag */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="flex items-center gap-2 mb-5"
+              className="inline-flex items-center gap-2.5 self-start bg-white/80 backdrop-blur border border-[#e6d9ff] rounded-full pl-1.5 pr-4 py-1.5 mb-5 shadow-[0_6px_18px_rgba(110,0,224,0.12)]"
             >
-              <IconStarFilled className="text-yellow-400" size={18} />
-              <span className="text-[#6E00E0] font-bold text-sm uppercase tracking-wider">
+              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-[#6E00E0] to-[#a855f7] text-white shadow-sm">
+                <IconSparkles size={15} />
+              </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6E00E0] to-[#a855f7] font-extrabold text-[13px] uppercase tracking-[0.14em]">
                 Fund Your Future with Confidence
               </span>
             </motion.div>
@@ -69,7 +71,7 @@ export function EduLoanHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-4xl lg:text-[58px] font-extrabold text-[#6E00E0] leading-[1.1] mb-5"
+              className="text-4xl lg:text-[48px] font-extrabold text-[#6E00E0] leading-[1.1] mb-4"
             >
               The Smarter Way to
               <br />
@@ -83,7 +85,7 @@ export function EduLoanHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55, duration: 0.8 }}
-              className="text-gray-600 text-lg font-medium mb-7 max-w-xl leading-relaxed"
+              className="text-gray-600 text-base md:text-lg font-medium mb-6 max-w-xl leading-relaxed"
             >
               From public banks to private lenders and NBFCs, we help you unlock
               the right education loan with expert guidance, faster action, and
@@ -95,7 +97,7 @@ export function EduLoanHero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.65, duration: 0.6 }}
-              className="flex flex-wrap gap-2 mb-8"
+              className="flex flex-wrap gap-2 mb-6"
             >
               {TRUST_CHIPS.map((chip) => (
                 <span
@@ -113,7 +115,7 @@ export function EduLoanHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.75, duration: 0.8 }}
-              className="flex flex-wrap gap-4 mb-10"
+              className="flex flex-wrap gap-4 mb-8"
             >
               <Link
                 href="/contact-us?type=consultation"
@@ -163,7 +165,7 @@ export function EduLoanHero() {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="w-full lg:w-[45%] relative flex justify-center items-center min-h-[500px]"
+            className="w-full lg:w-[45%] relative flex justify-center items-center min-h-[440px]"
           >
             {/* Floating country flags — commented out, restore to re-enable
             <div className="absolute top-4 right-0 flex flex-col gap-3 z-20">

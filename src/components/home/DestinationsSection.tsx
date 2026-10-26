@@ -3,26 +3,26 @@
 import { motion } from 'framer-motion';
 
 const topRowDestinations = [
-  { name: 'United States',  image: '/assets/images/countryplace/USA.png' },
-  { name: 'United Kingdom', image: '/assets/images/countryplace/United Kingdom.png' },
-  { name: 'Canada',         image: '/assets/images/countryplace/canadaa.png' },
-  { name: 'Germany',        image: '/assets/images/countryplace/Germany.png' },
-  { name: 'Ireland',        image: '/assets/images/countryplace/Ireland.png' },
-  { name: 'France',         image: '/assets/images/countryplace/France.png' },
-  { name: 'Australia',      image: '/assets/images/countryplace/Australia.png' },
-  { name: 'India',          image: '/assets/images/countryplace/india.png' },
+  { name: 'United States',  image: '/assets/images/countryplace/USA.webp' },
+  { name: 'United Kingdom', image: '/assets/images/countryplace/United Kingdom.webp' },
+  { name: 'Canada',         image: '/assets/images/countryplace/canadaa.webp' },
+  { name: 'Germany',        image: '/assets/images/countryplace/Germany.webp' },
+  { name: 'Ireland',        image: '/assets/images/countryplace/Ireland.webp' },
+  { name: 'France',         image: '/assets/images/countryplace/France.webp' },
+  { name: 'Australia',      image: '/assets/images/countryplace/Australia.webp' },
+  { name: 'India',          image: '/assets/images/countryplace/india.webp' },
 ];
 
 const bottomRowDestinations = [
-  { name: 'Spain',        image: '/assets/images/countryplace/Spain.png' },
-  { name: 'Singapore',    image: '/assets/images/countryplace/Singapore.png' },
-  { name: 'Switzerland',  image: '/assets/images/countryplace/Switzerland.png' },
-  { name: 'New Zealand',  image: '/assets/images/countryplace/New Zealand.png' },
-  { name: 'UAE',          image: '/assets/images/countryplace/UAE.png' },
-  { name: 'Netherlands',  image: '/assets/images/countryplace/Netherlands.png' },
-  { name: 'Sweden',       image: '/assets/images/countryplace/Swedish.png' },
-  { name: 'Japan',        image: '/assets/images/countryplace/Japan.png' },
-  { name: 'South Korea',  image: '/assets/images/countryplace/South Korea.png' },
+  { name: 'Spain',        image: '/assets/images/countryplace/Spain.webp' },
+  { name: 'Singapore',    image: '/assets/images/countryplace/Singapore.webp' },
+  { name: 'Switzerland',  image: '/assets/images/countryplace/Switzerland.webp' },
+  { name: 'New Zealand',  image: '/assets/images/countryplace/New Zealand.webp' },
+  { name: 'UAE',          image: '/assets/images/countryplace/UAE.webp' },
+  { name: 'Netherlands',  image: '/assets/images/countryplace/Netherlands.webp' },
+  { name: 'Sweden',       image: '/assets/images/countryplace/Swedish.webp' },
+  { name: 'Japan',        image: '/assets/images/countryplace/Japan.webp' },
+  { name: 'South Korea',  image: '/assets/images/countryplace/South Korea.webp' },
 ];
 
 const containerVariants = {

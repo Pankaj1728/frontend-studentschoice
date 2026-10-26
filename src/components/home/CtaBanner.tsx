@@ -32,7 +32,7 @@ export function CtaBanner() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              src="/assets/images/student-with-backback.png" 
+              src="/assets/images/student-with-backback.webp" 
               alt="Student with backpack and phone" 
               className="absolute bottom-0 z-10 w-auto object-contain object-bottom drop-shadow-[10px_0_30px_rgba(0,0,0,0.15)] pointer-events-none"
               style={{ height: '130%' }}

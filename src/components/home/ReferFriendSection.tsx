@@ -131,7 +131,7 @@ export function ReferFriendSection() {
                 {/* bottom wave + image */}
                 <div className="relative mt-5 h-[150px]">
                   <div className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-b from-[#7c1fe0] to-[#5a13b8]" style={{ borderTopLeftRadius: '50% 60px', borderTopRightRadius: '50% 60px' }} />
-                  <img src="/assets/images/refers students.png" alt="Refer a friend" className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 h-[180px] w-auto object-contain object-bottom select-none pointer-events-none" />
+                  <img src="/assets/images/refers students.webp" alt="Refer a friend" className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 h-[180px] w-auto object-contain object-bottom select-none pointer-events-none" />
                 </div>
               </div>
 
@@ -270,7 +270,7 @@ export function ReferFriendSection() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              src="/assets/images/refers students.png"
+              src="/assets/images/refers students.webp"
               alt="Refer a Friend"
               className="absolute bottom-0 z-10 w-auto object-contain object-bottom drop-shadow-[10px_0_30px_rgba(0,0,0,0.18)] pointer-events-none"
               style={{ height: '130%' }}

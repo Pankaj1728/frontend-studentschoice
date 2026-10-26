@@ -191,7 +191,7 @@ export function EduLoanHero() {
             <div className="relative z-10 w-full max-w-[540px]">
               <div className="absolute inset-8 rounded-[50%] bg-gradient-to-br from-[#6E00E0]/20 to-fuchsia-300/20 blur-2xl" />
               <img
-                src="/assets/images/Girl.png"
+                src="/assets/images/Girl.webp"
                 alt="Student applying for Education Loan"
                 className="relative w-full h-auto object-contain drop-shadow-2xl animate-float"
                 draggable="false"

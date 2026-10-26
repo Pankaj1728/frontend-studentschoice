@@ -11,7 +11,7 @@ export default function USAPage() {
     <StudyUSAPage
       country="USA"
       tagline="Your Smart Path to Study in the USA"
-      heroImage="/assets/images/studyabroadcountry/USA.png"
+      heroImage="/assets/images/studyabroadcountry/USA.webp"
       introParagraphs={[
         "The USA continues to be one of the most preferred destinations for international students because of its academic excellence, flexible education system, advanced research opportunities, and strong career pathways. From globally recognised universities to innovation-driven learning environments, students gain access to world-class education and international exposure.",
         "Studying in the USA is more than earning a degree — it's an opportunity to build industry-ready skills, connect with global professionals, and prepare for long-term career growth across diverse sectors."

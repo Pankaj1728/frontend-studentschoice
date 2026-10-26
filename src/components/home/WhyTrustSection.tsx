@@ -21,7 +21,7 @@ export function WhyTrustSection() {
         >
           <div className="relative w-full max-w-[600px] animate-float">
             <img
-              src="/assets/images/student-trust.png"
+              src="/assets/images/student-trust.webp"
               alt="Global Landmarks"
               className="w-full h-auto drop-shadow-2xl"
             />

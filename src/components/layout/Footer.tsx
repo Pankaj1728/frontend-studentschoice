@@ -40,7 +40,7 @@ export function Footer() {
                 animation: 'fly-plane 16s linear infinite',
               }}>
               <img
-                src="/assets/images/Plane PNG.png"
+                src="/assets/images/Plane PNG.webp"
                 alt="Airplane"
                 className="h-[120px] md:h-[155px] w-auto select-none"
               />
@@ -55,12 +55,12 @@ export function Footer() {
             {/* Dotted World Map Background */}
             <div
               className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-[0.06] pointer-events-none z-0"
-              style={{ backgroundImage: "url('/assets/images/Map.png')" }}
+              style={{ backgroundImage: "url('/assets/images/Map.webp')" }}
             />
 
             {/* Skyline Silhouette bottom-left */}
             <img
-              src="/assets/images/All Components.png"
+              src="/assets/images/All Components.webp"
               alt="Skyline Silhouette"
               className="absolute bottom-0 left-0 h-[100px] md:h-[130px] lg:h-[160px] w-auto object-contain object-left-bottom pointer-events-none z-0 select-none opacity-80 mix-blend-multiply"
             />

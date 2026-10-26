@@ -182,7 +182,7 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
                 {/* Country image on the right, fading into the gradient */}
                 <div className="absolute inset-y-0 right-0 w-[45%] pointer-events-none">
                   <img
-                    src={`/assets/images/studyabroadcountry/${p.country.toUpperCase()}.png`}
+                    src={`/assets/images/studyabroadcountry/${p.country.toUpperCase()}.webp`}
                     alt={`Study in ${p.country}`}
                     className="w-full h-full object-cover object-center"
                   />

@@ -52,7 +52,7 @@ export function LoanOptionsSection() {
       >
         <div
           className="absolute inset-0 bg-no-repeat bg-center bg-contain opacity-25 pointer-events-none"
-          style={{ backgroundImage: 'url(/assets/images/Map.png)' }}
+          style={{ backgroundImage: 'url(/assets/images/Map.webp)' }}
         />
 
         <div className="relative grid grid-cols-2 lg:grid-cols-[210px_1fr_210px] gap-6 md:gap-8 items-center">

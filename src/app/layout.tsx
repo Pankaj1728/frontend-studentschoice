@@ -31,12 +31,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={outfit.variable} suppressHydrationWarning>
       <head>
         <ColorSchemeScript />
       </head>
-      <body className={`${outfit.variable} font-sans antialiased`}>
-        <MantineProvider defaultColorScheme="light">
+      <body className="font-sans antialiased">
+        <MantineProvider
+          defaultColorScheme="light"
+          theme={{
+            fontFamily: 'var(--font-outfit), system-ui, sans-serif',
+            headings: { fontFamily: 'var(--font-outfit), system-ui, sans-serif' },
+          }}
+        >
           <LeadModalProvider>
             <SiteEffects />
             {children}

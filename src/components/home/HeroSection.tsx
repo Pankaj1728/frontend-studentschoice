@@ -2,20 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { IconBrandWhatsapp, IconStarFilled } from '@tabler/icons-react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useLeadForm } from '@/components/lead/LeadModal';
 
-const APPROVAL_BADGES = [
-  { name: 'Vijayalakshmi', amount: '₹70 Lakh', country: 'USA', flag: 'https://flagcdn.com/w40/us.png' },
-  { name: 'Rahul Sharma', amount: '₹45 Lakh', country: 'UK', flag: 'https://flagcdn.com/w40/gb.png' },
-  { name: 'Ananya Iyer', amount: '₹60 Lakh', country: 'Canada', flag: 'https://flagcdn.com/w40/ca.png' },
-  { name: 'Sameer Khan', amount: '₹35 Lakh', country: 'Germany', flag: 'https://flagcdn.com/w40/de.png' },
-];
-
 const HERO_STATS = [
-  { key: 'students', end: 50000, format: (n: number) => `${n.toLocaleString('en-IN')}+`, label: 'Students Application' },
-  { key: 'sanctioned', end: 15000, format: (n: number) => `₹${n.toLocaleString('en-IN')} cr+`, label: 'Sanctioned' },
-  { key: 'partners', end: 15, format: (n: number) => `${n}+`, label: 'Loan Partners' },
+  { key: 'students', end: 50000, format: (n: number) => `${n.toLocaleString('en-IN')}+`, label: 'Students guided' },
+  { key: 'sanctioned', end: 5000, format: (n: number) => `₹${n.toLocaleString('en-IN')} Cr+`, label: 'Loans sanctioned' },
+  { key: 'partners', end: 15, format: (n: number) => `${n}+`, label: 'Bank & NBFC partners' },
 ] as const;
 
 function useCountUp(target: number, durationMs: number, enabled: boolean) {
@@ -51,11 +44,11 @@ function HeroStatsRow() {
     <div ref={ref} className="relative mt-8">
       <div className="relative flex items-stretch divide-x divide-[#e6d9fb]">
         {HERO_STATS.map((stat, i) => (
-          <div key={stat.key} className="px-6 first:pl-0 text-center">
-            <div className="bg-gradient-to-br from-[#6E00E0] to-[#6f1ed0] bg-clip-text text-transparent font-extrabold text-2xl md:text-[28px] tabular-nums leading-none">
+          <div key={stat.key} className="px-4 sm:px-6 first:pl-0 sm:first:pl-2 text-center">
+            <div className="text-[#5b0fd6] font-extrabold text-xl sm:text-[25px] xl:text-[28px] tabular-nums leading-none tracking-tight">
               {stat.format(values[i])}
             </div>
-            <div className="mt-1.5 text-[12px] font-semibold text-gray-500">{stat.label}</div>
+            <div className="mt-1.5 text-[12px] sm:text-[13px] xl:text-[14px] font-medium text-gray-600">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -65,16 +58,6 @@ function HeroStatsRow() {
 
 export function HeroSection() {
   const { open } = useLeadForm();
-  const [badgeIndex, setBadgeIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setBadgeIndex((prev) => (prev + 1) % APPROVAL_BADGES.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const badge = APPROVAL_BADGES[badgeIndex];
 
   return (
     <section className="relative w-full bg-white overflow-hidden pt-10 pb-12">
@@ -82,7 +65,7 @@ export function HeroSection() {
       <div className="pointer-events-none absolute top-36 right-0 w-80 h-80 rounded-full bg-fuchsia-200/30 blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center min-h-[500px]">
+        <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-12 items-center min-h-[500px]">
 
           {/* Left Content */}
           <motion.div
@@ -93,36 +76,36 @@ export function HeroSection() {
           >
             {/* Tagline */}
             <div className="flex items-center gap-2 mb-4">
-              <IconStarFilled className="text-yellow-400" size={20} />
-              <span className="text-[#15112b] font-semibold text-[15px] md:text-base">
+              <IconStarFilled className="text-amber-500" size={15} />
+              <span className="text-[#15112b] font-semibold text-[14px] md:text-[15px]">
                 Your Ambition, Our Expertise, Global Success
               </span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl md:text-[48px] font-black leading-[1.08] tracking-tight mb-5">
-              <span className="bg-gradient-to-br from-[#6E00E0] to-[#6f1ed0] bg-clip-text text-transparent">Get Guided by India&apos;s</span>
+            <h1 className="text-[#6a0fe0] text-[32px] sm:text-[40px] lg:text-[42px] xl:text-[48px] font-black leading-[1.1] tracking-tight mb-5">
+              Get Guided by
               <br />
-              <span className="text-[#520dd8]">Trusted Study</span>
+              India&apos;s Trusted Study
               <br />
-              <span className="bg-gradient-to-br from-[#6E00E0] to-[#6f1ed0] bg-clip-text text-transparent">Abroad Experts</span>
+              Abroad Experts
             </h1>
 
             {/* Subtitle */}
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6 max-w-xl">
+            <p className="text-gray-600 text-[15px] md:text-base leading-relaxed mb-7 max-w-lg">
               From choosing the right university to securing your education loan, we support you at every step of your journey.
             </p>
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
-              <button onClick={() => open('Book Free Consultation — Hero')} className="inline-flex items-center justify-center font-bold px-8 h-12 rounded-full text-white bg-[#520dd8] hover:bg-[#8c52ff] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(82,13,216,0.35)]">
+              <button onClick={() => open('Book Free Consultation — Hero')} className="inline-flex items-center justify-center font-medium text-[16px] px-8 h-12 rounded-full text-white bg-[#520dd8] hover:bg-[#8c52ff] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(82,13,216,0.35)]">
                 Book Free Consultation
               </button>
               <a
                 href="https://wa.me/919801821680?text=Hello%20Students%20Choice!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 justify-center font-bold px-8 h-12 rounded-full text-white bg-[#25D366] hover:bg-[#1faa55] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(37,211,102,0.35)]"
+                className="inline-flex items-center gap-2 justify-center font-bold text-[16px] px-8 h-12 rounded-full text-white bg-[#25D366] hover:bg-[#1faa55] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(37,211,102,0.35)]"
               >
                 <IconBrandWhatsapp size={22} /> WhatsApp
               </a>
@@ -130,31 +113,6 @@ export function HeroSection() {
 
             {/* Stats row */}
             <HeroStatsRow />
-
-            {/* Approval Notification Box */}
-            <div className="mt-6 relative self-start">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={badge.name}
-                  initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                  transition={{ duration: 0.5, ease: 'easeOut' }}
-                  className="bg-white border-2 border-[#6E00E0] rounded-full pl-6 pr-4 py-2 flex items-center justify-between min-w-[300px] relative z-10 shadow-[0_14px_34px_rgba(110,0,224,0.20)]"
-                >
-                  <div className="flex flex-col items-start pr-8">
-                    <span className="text-[#6E00E0] font-extrabold text-[15px]">{badge.name}</span>
-                    <div className="flex items-baseline gap-2 mt-0.5">
-                      <span className="text-black font-black text-[18px]">{badge.amount}</span>
-                      <span className="text-[#6E00E0] text-[12px] font-bold uppercase tracking-tighter">Loan Approved</span>
-                    </div>
-                  </div>
-                  <div className="w-12 h-[30px] rounded overflow-hidden flex-shrink-0 flex items-center justify-center border border-gray-100 shadow-inner">
-                    <img src={badge.flag} alt={`${badge.country} Flag`} className="h-full w-full object-cover" />
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
           </motion.div>
 
           {/* Right Image */}
@@ -168,7 +126,7 @@ export function HeroSection() {
                 <img
                 src="/assets/images/hero-banner.svg"
                 alt="Student Study Abroad Consultancy"
-                className="w-full max-w-[760px] lg:scale-110 lg:-mr-6 h-auto object-contain animate-float drop-shadow-2xl"
+                className="w-full max-w-[820px] lg:scale-[1.28] lg:-mr-10 h-auto object-contain animate-float drop-shadow-2xl"
                 draggable="false"
               />
             </div>

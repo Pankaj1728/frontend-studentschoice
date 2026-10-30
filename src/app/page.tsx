@@ -1,9 +1,10 @@
 import { Header } from "@/components/layout/Header";
 import { HeroSection } from "@/components/home/HeroSection";
+import { LoanGlanceSection } from "@/components/home/LoanGlanceSection";
 import { PlatformTabsSection } from "@/components/home/PlatformTabsSection";
 import { WhyTrustSection } from "@/components/home/WhyTrustSection";
 import { LoanSupportSection } from "@/components/home/LoanSupportSection";
-import { LoanOptionsSection } from "@/components/home/LoanOptionsSection";
+import { LenderMarquee } from "@/components/home/LenderMarquee";
 import { DestinationsSection } from "@/components/home/DestinationsSection";
 import { TestimonialSection } from "@/components/home/TestimonialSection";
 import { ReferFriendSection } from "@/components/home/ReferFriendSection";
@@ -17,10 +18,11 @@ export default function Home() {
     <main id="main-content" className="min-h-screen bg-white">
       <Header />
       <HeroSection />
+      <LoanGlanceSection />
       <PlatformTabsSection />
       <WhyTrustSection />
       <LoanSupportSection />
-      <LoanOptionsSection />
+      <LenderMarquee />
       <DestinationsSection />
       <TestimonialSection />
       <ReferFriendSection />

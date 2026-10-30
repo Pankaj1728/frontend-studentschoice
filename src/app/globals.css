@@ -68,24 +68,6 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-@keyframes logo-scroll-vertical {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(calc(-50% - 0.625rem));
-  }
-}
-
-.animate-logo-scroll-up {
-  animation: logo-scroll-vertical 16s linear infinite;
-}
-
-.animate-logo-scroll-down {
-  animation: logo-scroll-vertical 16s linear infinite reverse;
-}
-
 @keyframes marquee-left {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }

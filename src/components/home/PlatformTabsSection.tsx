@@ -136,11 +136,11 @@ export function PlatformTabsSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-4"
         >
-          <p className="text-[17px] md:text-[20px] font-bold text-[#6E00E0] mb-1">
-            Your All-in One Platform for Studying Abroad
+          <p className="text-[16px] md:text-[18px] font-medium text-black mb-1">
+            Your All-in-One Platform for Studying Abroad
           </p>
-          <h2 className="text-[30px] md:text-[42px] font-extrabold text-[#1a0040] leading-tight">
-            Plan, and Apply with Student&apos;s Choice
+          <h2 className="text-[28px] md:text-[38px] font-bold text-[#520dd8] tracking-tight leading-tight">
+            Plan and Apply with Students Choice
           </h2>
         </motion.div>
 

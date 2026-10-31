@@ -27,9 +27,9 @@ const NBFCS: Lender[] = [
   { name: 'Auxilo', logo: '/assets/images/Auxilo.svg' },
   { name: 'Tata Capital', logo: '/assets/images/Tata.svg' },
   { name: 'Poonawalla Fincorp', logo: '/assets/images/Poonawalla.svg' },
-  { name: 'InCred' },
-  { name: 'Prodigy' },
-  { name: 'Edgro' },
+  { name: 'InCred', logo: '/assets/images/Incred.svg' },
+  { name: 'Prodigy', logo: '/assets/images/Prodigy.svg' },
+  { name: 'Edgro', logo: '/assets/images/Edgro.svg' },
   { name: 'Avanse Global', logo: '/assets/images/Avanse%20Global.svg' },
 ];
 

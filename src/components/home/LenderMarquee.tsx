@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { useLeadForm } from '@/components/lead/LeadModal';
 import styles from './LenderMarquee.module.css';
 
-type Lender = { name: string; logo?: string };
+// scale shrinks a logo that looks too big next to the others (1 = normal size)
+type Lender = { name: string; logo?: string; scale?: number };
 
 // Left column: all banks (moves UP)
 const BANKS: Lender[] = [
@@ -27,7 +28,7 @@ const NBFCS: Lender[] = [
   { name: 'Auxilo', logo: '/assets/images/Auxilo.svg' },
   { name: 'Tata Capital', logo: '/assets/images/Tata.svg' },
   { name: 'Poonawalla Fincorp', logo: '/assets/images/Poonawalla.svg' },
-  { name: 'InCred', logo: '/assets/images/Incred.svg' },
+  { name: 'InCred', logo: '/assets/images/banks/Incred.png', scale: 0.7 },
   { name: 'Prodigy', logo: '/assets/images/Prodigy.svg' },
   { name: 'Edgro', logo: '/assets/images/Edgro.svg' },
   { name: 'Avanse Global', logo: '/assets/images/Avanse%20Global.svg' },
@@ -43,11 +44,12 @@ function LenderCard({ lender, duplicate }: { lender: Lender; duplicate?: boolean
         <Image
           src={lender.logo}
           alt={duplicate ? '' : lender.name}
-          width={130}
-          height={44}
+          width={170}
+          height={58}
           unoptimized
           loading="eager"
           className={styles.logo}
+          style={lender.scale ? ({ '--logo-scale': lender.scale } as CSSProperties) : undefined}
         />
       ) : (
         <span className={styles.wordmark}>{lender.name}</span>

@@ -113,8 +113,8 @@
 
 .logo {
   width: 100%;
-  max-width: 130px;
-  height: 44px;
+  max-width: 170px;
+  height: calc(58px * var(--logo-scale, 1));
   object-fit: contain;
 }
 
@@ -335,8 +335,12 @@
   }
 
   .card {
-    width: 136px;
-    height: 68px;
+    width: 150px;
+    height: 72px;
+  }
+
+  .logo {
+    height: calc(48px * var(--logo-scale, 1));
   }
 
   .wordmark {

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { IconBrandWhatsapp, IconStarFilled } from '@tabler/icons-react';
 import { motion, useInView } from 'framer-motion';
 import { useLeadForm } from '@/components/lead/LeadModal';
+import { HeroFx } from '@/components/home/HeroFx';
 
 const HERO_STATS = [
   { key: 'students', end: 50000, format: (n: number) => `${n.toLocaleString('en-IN')}+`, label: 'Students guided' },
@@ -58,17 +59,27 @@ function HeroStatsRow() {
 
 export function HeroSection() {
   const { open } = useLeadForm();
+  const heroRef = useRef<HTMLElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   return (
-    <section className="relative w-full bg-white overflow-hidden pt-10 pb-12">
-      <div className="pointer-events-none absolute -top-24 -left-20 w-72 h-72 rounded-full bg-[#6E00E0]/10 blur-3xl" />
-      <div className="pointer-events-none absolute top-36 right-0 w-80 h-80 rounded-full bg-fuchsia-200/30 blur-3xl" />
+    <section
+      ref={heroRef}
+      className="relative w-full overflow-hidden pt-10 pb-12"
+      style={{
+        background:
+          'radial-gradient(900px 420px at 0% 0%, #f1e9ff, transparent 65%), radial-gradient(800px 520px at 100% 30%, #f1e9ff, transparent 60%), #ffffff',
+      }}
+    >
+      <HeroFx heroRef={heroRef} imgRef={imgRef} textRef={textRef} />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-12 items-center min-h-[500px]">
 
           {/* Left Content */}
           <motion.div
+            ref={textRef}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -83,7 +94,7 @@ export function HeroSection() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-[#6a0fe0] text-[32px] sm:text-[40px] lg:text-[42px] xl:text-[48px] font-black leading-[1.1] tracking-tight mb-5">
+            <h1 className="text-[#6a0fe0] text-[34px] sm:text-[44px] lg:text-[48px] xl:text-[56px] font-black leading-[1.1] tracking-tight mb-5">
               Get Guided by
               <br />
               India&apos;s Trusted Study
@@ -98,16 +109,16 @@ export function HeroSection() {
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
-              <button onClick={() => open('Book Free Consultation — Hero')} className="inline-flex items-center justify-center font-medium text-[16px] px-8 h-12 rounded-full text-white bg-[#520dd8] hover:bg-[#8c52ff] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(82,13,216,0.35)]">
+              <button onClick={() => open('Book Free Consultation — Hero')} className="btn-shine inline-flex items-center justify-center font-medium text-[16px] px-8 h-12 rounded-full text-white bg-[#520dd8] hover:bg-[#8c52ff] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(82,13,216,0.35)]">
                 Book Free Consultation
               </button>
               <a
                 href="https://wa.me/919801821680?text=Hello%20Students%20Choice!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 justify-center font-bold text-[16px] px-8 h-12 rounded-full text-white bg-[#25D366] hover:bg-[#1faa55] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(37,211,102,0.35)]"
+                className="inline-flex items-center gap-2 justify-center font-bold text-[16px] px-8 h-12 rounded-full text-white bg-[#13814a] hover:bg-[#0f6b3d] hover:scale-[1.03] transition-all duration-300 shadow-[0_12px_30px_rgba(19,129,74,0.3)]"
               >
-                <IconBrandWhatsapp size={22} /> WhatsApp
+                <IconBrandWhatsapp size={22} /> Chat on WhatsApp
               </a>
             </div>
 
@@ -124,9 +135,10 @@ export function HeroSection() {
           >
             <div className="relative z-10 w-full flex justify-center items-center">
                 <img
+                ref={imgRef}
                 src="/assets/images/hero-banner.svg"
                 alt="Student Study Abroad Consultancy"
-                className="w-full max-w-[820px] lg:scale-[1.28] lg:-mr-10 h-auto object-contain animate-float drop-shadow-2xl"
+                className="w-full max-w-[820px] lg:scale-[1.22] lg:translate-y-6 lg:-mr-10 h-auto object-contain animate-float drop-shadow-2xl"
                 draggable="false"
               />
             </div>

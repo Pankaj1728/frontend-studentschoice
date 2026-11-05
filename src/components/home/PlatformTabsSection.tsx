@@ -229,7 +229,7 @@ export function PlatformTabsSection() {
                 {/* CTA Buttons */}
                 <div className="flex flex-wrap gap-3 mt-4">
                   <button
-                    onClick={() => open(active.buttonText)}
+                    onClick={() => open(active.buttonText, active.id === 'loan' ? 'loan' : 'study')}
                     className="inline-flex items-center gap-2 bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-bold text-[15px] px-7 py-3.5 rounded-full shadow-md transition-all hover:scale-105 active:scale-95"
                   >
                     {active.buttonText}

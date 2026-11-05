@@ -62,7 +62,7 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
                 Discover top-ranked universities, explore scholarships, understand tuition costs, and plan your complete {p.country} journey with expert guidance from Students Choice.
               </p>
 
-              <button type="button" onClick={() => open(`Explore ${p.country} University`)}
+              <button type="button" onClick={() => open(`Explore ${p.country} University`, 'study')}
                 className="inline-flex items-center bg-white text-[#6E00E0] font-bold px-6 py-2.5 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all text-sm md:text-base group"
               >
                 Explore {p.country} University
@@ -193,7 +193,7 @@ export function StudyUSAPage(p: StudyUSAPageProps) {
                   <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/80 mb-2"><span className="text-sm">🚀</span> Ready to move?</p>
                   <h3 className="text-2xl font-extrabold leading-snug mb-3">Start Your {p.country} Study Journey <span className="text-yellow-300">Today!</span></h3>
                   <p className="text-sm text-white/80 mb-5 leading-relaxed">Get personalised guidance from our expert consultants — completely free.</p>
-                  <button type="button" onClick={() => open('Book Free Consultation')}
+                  <button type="button" onClick={() => open('Book Free Consultation', 'study')}
                     className="inline-flex items-center gap-2 bg-white text-[#6E00E0] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-yellow-50 hover:scale-105 transition-all shadow-md"
                   >
                     Book Free Consultation

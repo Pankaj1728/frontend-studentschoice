@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useLeadForm } from '@/components/lead/LeadModal';
 
@@ -26,6 +27,7 @@ const cards = [
       'Dedicated Partner Support',
     ],
     buttonText: 'Become a Partner',
+    href: '/partner',
     image: '/assets/images/Consultants%20%26%20Agents.svg',
   },
   {
@@ -38,6 +40,7 @@ const cards = [
       'Long-Term Partnership Growth',
     ],
     buttonText: 'Partner With Us',
+    href: '/partner',
     image: '/assets/images/Institutions%20%26%20Universities.svg',
   },
 ];
@@ -112,12 +115,18 @@ export function JourneySection() {
                   ))}
                 </ul>
 
-                <button
-                  onClick={() => open(`${card.title} — ${card.buttonText}`)}
-                  className="self-start inline-flex items-center bg-gradient-to-r from-[#6E00E0] to-[#8b3dff] text-white font-bold text-[15px] px-7 py-3.5 rounded-full shadow-[0_8px_20px_rgba(110,0,224,0.25)] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_rgba(110,0,224,0.35)] transition-all duration-300"
-                >
-                  {card.buttonText}
-                </button>
+                {card.href ? (
+                  <Link href={card.href} className="self-start inline-flex items-center bg-gradient-to-r from-[#6E00E0] to-[#8b3dff] text-white font-bold text-[15px] px-7 py-3.5 rounded-full shadow-[0_8px_20px_rgba(110,0,224,0.25)] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_rgba(110,0,224,0.35)] transition-all duration-300">
+                    {card.buttonText}
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => open(`${card.title} — ${card.buttonText}`)}
+                    className="self-start inline-flex items-center bg-gradient-to-r from-[#6E00E0] to-[#8b3dff] text-white font-bold text-[15px] px-7 py-3.5 rounded-full shadow-[0_8px_20px_rgba(110,0,224,0.25)] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_rgba(110,0,224,0.35)] transition-all duration-300"
+                  >
+                    {card.buttonText}
+                  </button>
+                )}
               </div>
             </motion.div>
           ))}

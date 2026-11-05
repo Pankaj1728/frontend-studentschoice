@@ -70,7 +70,7 @@ export function CountryPage(p: CountryPageProps) {
             <div className="flex flex-wrap gap-4 justify-center">
               <button
                 type="button"
-                onClick={() => open('Book Free Consultation')}
+                onClick={() => open('Book Free Consultation', 'study')}
                 className="bg-white text-[#6E00E0] font-bold px-8 py-3.5 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
               >
                 Book Free Consultation

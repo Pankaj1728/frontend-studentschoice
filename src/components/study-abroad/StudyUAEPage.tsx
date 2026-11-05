@@ -60,7 +60,7 @@ export function StudyUAEPage(p: StudyUAEPageProps) {
               <p className="text-white/70 text-base md:text-xl font-semibold mb-10 max-w-2xl leading-relaxed drop-shadow-md">
                 Discover globally respected universities, future-focused education, world-class infrastructure, and international career opportunities in one of the Middle East&apos;s fastest-growing education and business destinations.
               </p>
-              <button type="button" onClick={() => open(`Explore ${p.country} University`)}
+              <button type="button" onClick={() => open(`Explore ${p.country} University`, 'study')}
                 className="inline-flex items-center bg-white text-[#6E00E0] font-extrabold px-8 py-3 rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all text-sm md:text-base group"
               >
                 Explore {p.country} Universities
@@ -168,7 +168,7 @@ export function StudyUAEPage(p: StudyUAEPageProps) {
                 <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-2">Ready to move?</p>
                 <h3 className="text-xl font-extrabold leading-snug mb-3">Start Your {p.country} Study Journey Today</h3>
                 <p className="text-sm text-white/70 mb-5 leading-relaxed">Get personalised guidance from our expert consultants — completely free.</p>
-                <button type="button" onClick={() => open('Book Free Consultation')}
+                <button type="button" onClick={() => open('Book Free Consultation', 'study')}
                   className="inline-flex items-center gap-2 bg-white text-[#6E00E0] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-yellow-50 hover:scale-105 transition-all shadow-md"
                 >
                   Book Free Consultation

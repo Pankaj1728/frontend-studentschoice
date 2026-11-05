@@ -1,12 +1,17 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import styles from './LeadModal.module.css';
 
 const LEAD_EMAIL = 'pankaj@studentschoice.in';
+const WHATSAPP_URL = 'https://wa.me/919801821680';
+
+export type LeadType = 'loan' | 'study';
 
 type LeadContextValue = {
-  open: (source?: string) => void;
+  open: (ctaLabel?: string, type?: LeadType) => void;
 };
 
 const LeadContext = createContext<LeadContextValue | null>(null);
@@ -17,229 +22,437 @@ export function useLeadForm() {
   return ctx;
 }
 
-const DESTINATIONS = ['USA', 'UK', 'Canada', 'Australia', 'Germany', 'France', 'Ireland', 'Italy', 'Spain', 'Switzerland', 'Singapore', 'UAE', 'New Zealand', 'Other'];
-const ADMISSION = ['Yet to Apply', 'Applied', 'Got Admission', 'Just Exploring'];
+const DESTINATIONS = ['USA', 'UK', 'Canada', 'Australia', 'Germany', 'Ireland', 'France', 'Other'];
 
-/* ─── Field icons ─── */
-const IUser = () => (<svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>);
-const IPhone = () => (<svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" /></svg>);
-const IMail = () => (<svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 5L2 7" /></svg>);
-const IDollar = () => (<svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>);
-const IGlobe = () => (<svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>);
-const IDoc = () => (<svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>);
-const IPin = () => (<svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>);
-const IChevron = () => (<svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>);
-const IBolt = () => (<svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>);
-const IShield = () => (<svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>);
-const ILock = () => (<svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>);
+// The next three intakes (January, May, September) after the current month, plus "Not sure yet"
+function upcomingIntakes(now = new Date()) {
+  const names = ['Jan', 'May', 'Sep'];
+  const months = [0, 4, 8];
+  const out: string[] = [];
+  let year = now.getFullYear();
+  let month = now.getMonth();
+  while (out.length < 3) {
+    const i = months.findIndex((m) => m > month);
+    if (i === -1) {
+      year += 1;
+      month = -1;
+      continue;
+    }
+    out.push(`${names[i]} ${year}`);
+    month = months[i];
+  }
+  return [...out, 'Not sure yet'];
+}
 
-const empty = { name: '', phone: '', email: '', loanAmount: '', destination: '', admissionStatus: '', city: '' };
+type Question = { key: string; label: string; summary: string; field: string; options: string[] };
+
+function questions(type: LeadType): Question[] {
+  if (type === 'loan') {
+    return [
+      { key: 'amount', label: 'Loan Amount', summary: 'Loan amount', field: 'Loan Amount', options: ['Up to ₹10 Lakh', '₹10–25 Lakh', '₹25–50 Lakh', '₹50 Lakh–1 Cr', 'Above ₹1 Cr'] },
+      { key: 'destination', label: 'Preferred Destination', summary: 'Destination', field: 'Preferred Destination', options: DESTINATIONS },
+      { key: 'admission', label: 'Admission Status', summary: 'Admission', field: 'Admission Status', options: ['Admission confirmed', 'Applied, waiting', 'Not applied yet'] },
+    ];
+  }
+  return [
+    { key: 'destination', label: 'Preferred Destination', summary: 'Destination', field: 'Preferred Destination', options: DESTINATIONS },
+    { key: 'level', label: 'Course Level', summary: 'Course level', field: 'Course Level', options: ['Bachelor’s (UG)', 'Master’s (PG)', 'MBA', 'PhD', 'Diploma'] },
+    { key: 'intake', label: 'Intake', summary: 'Intake', field: 'Intake', options: upcomingIntakes() },
+    { key: 'english', label: 'English Test', summary: 'English test', field: 'English Test', options: ['IELTS', 'TOEFL', 'PTE', 'Duolingo', 'Not yet'] },
+  ];
+}
+
+const COPY = {
+  loan: {
+    sideH: 'Get the right education loan, faster',
+    points: ['Compare 15+ banks & NBFCs', 'Collateral-free options', 'Help with every document'],
+    sub: 'Tell us a little about you and we’ll call you back.',
+    submit: 'Get My Loan Options →',
+    step2: 'Loan details',
+    kind: 'education loan',
+    formType: 'education_loan',
+    subject: 'New Lead — Education Loan Consultation',
+  },
+  study: {
+    sideH: 'Find your best-fit university',
+    points: ['Free university shortlist', 'Admission & visa guidance', 'Scholarship & loan support'],
+    sub: 'Tell us about your plans and an expert will call you back.',
+    submit: 'Get Free Counselling →',
+    step2: 'University details',
+    kind: 'study abroad',
+    formType: 'study_abroad',
+    subject: 'New Lead — Study Abroad Consultation',
+  },
+} as const;
+
+const CONSENT_TEXT =
+  'I agree that Students Choice and its lending and university partners may contact me by phone, WhatsApp, SMS and email about my enquiry. I have read the Privacy Policy.';
+
+const PHONE_RE = /^[6-9]\d{9}$/;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const emptyDetails = { name: '', phone: '', email: '', city: '' };
+type Details = typeof emptyDetails;
+
+type Done = { firstName: string; maskedPhone: string; kind: string; rows: [string, string][]; waHref: string };
 
 export function LeadModalProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [source, setSource] = useState<string | undefined>();
-  const [form, setForm] = useState(empty);
-  const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
+  const [type, setType] = useState<LeadType>('loan');
+  const [step, setStep] = useState<1 | 2>(1);
+  const [ctaLabel, setCtaLabel] = useState('Website');
+  const [details, setDetails] = useState<Details>(emptyDetails);
+  const [choices, setChoices] = useState<Record<string, string>>({});
+  const [consent, setConsent] = useState(false);
+  const [invalid, setInvalid] = useState<Set<string>>(new Set());
+  const [error1, setError1] = useState('');
+  const [error2, setError2] = useState('');
+  const [sending, setSending] = useState(false);
+  const [done, setDone] = useState<Done | null>(null);
 
-  const open = useCallback((src?: string) => {
-    setSource(src);
-    setStatus('idle');
+  const boxRef = useRef<HTMLDivElement>(null);
+  const doneRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+
+  const copy = COPY[type];
+  const qs = questions(type);
+
+  const open = useCallback((label?: string, t: LeadType = 'loan') => {
+    triggerRef.current = document.activeElement as HTMLElement | null;
+    setCtaLabel(label || 'Website');
+    setType(t);
+    setStep(1);
+    setDetails(emptyDetails);
+    setChoices({});
+    setConsent(false);
+    setInvalid(new Set());
+    setError1('');
+    setError2('');
+    setSending(false);
+    setDone(null);
     setIsOpen(true);
   }, []);
 
-  const close = useCallback(() => setIsOpen(false), []);
+  const close = useCallback(() => {
+    setIsOpen(false);
+    const t = triggerRef.current;
+    if (t && document.contains(t)) setTimeout(() => t.focus(), 0);
+  }, []);
+
+  // lock page scroll and move focus into the popup
+  useEffect(() => {
+    if (!isOpen) return;
+    const html = document.documentElement;
+    const prev = html.style.overflow;
+    html.style.overflow = 'hidden';
+    const id = setTimeout(() => nameRef.current?.focus(), 30);
+    return () => {
+      html.style.overflow = prev;
+      clearTimeout(id);
+    };
+  }, [isOpen]);
+
+  // Esc closes; Tab and Shift+Tab stay inside the popup
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        close();
+        return;
+      }
+      if (e.key !== 'Tab' || !boxRef.current) return;
+      const items = Array.from(
+        boxRef.current.querySelectorAll<HTMLElement>('button, a[href], input:not([type="hidden"])'),
+      ).filter((el) => el.offsetParent !== null && !(el as HTMLButtonElement).disabled);
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [isOpen, close]);
 
   useEffect(() => {
-    if (isOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    return () => { document.body.style.overflow = ''; };
-  }, [isOpen]);
+    if (done) doneRef.current?.focus();
+  }, [done]);
+
+  const clearErrors = () => {
+    setInvalid(new Set());
+    setError1('');
+    setError2('');
+  };
+
+  const phoneDigits = details.phone.replace(/\D/g, '');
+
+  function validStep1() {
+    clearErrors();
+    const bad = new Set<string>();
+    if (!details.name.trim()) bad.add('name');
+    if (!PHONE_RE.test(phoneDigits)) bad.add('phone');
+    if (!EMAIL_RE.test(details.email.trim())) bad.add('email');
+    if (!details.city.trim()) bad.add('city');
+    if (bad.size) {
+      setInvalid(bad);
+      setError1('Please check the highlighted details. Phone needs a 10-digit Indian mobile number.');
+      const first = ['name', 'phone', 'email', 'city'].find((k) => bad.has(k));
+      boxRef.current?.querySelector<HTMLInputElement>(`input[name="${first}"]`)?.focus();
+      return false;
+    }
+    return true;
+  }
+
+  function validStep2() {
+    clearErrors();
+    const bad = new Set(qs.filter((q) => !choices[q.key]).map((q) => q.key));
+    if (!bad.size && consent) return true;
+    setInvalid(bad);
+    if (bad.size) {
+      setError2('Please choose one option in each question.');
+      const first = qs.find((q) => bad.has(q.key));
+      boxRef.current?.querySelector<HTMLInputElement>(`input[name="${first?.key}"]`)?.focus();
+    } else {
+      setError2('Please tick the consent box so we can contact you.');
+      boxRef.current?.querySelector<HTMLInputElement>('input[name="consent"]')?.focus();
+    }
+    return false;
+  }
+
+  function goNext() {
+    if (!validStep1()) return;
+    setStep(2);
+    setTimeout(() => boxRef.current?.querySelector<HTMLInputElement>('fieldset[data-step="2"] input')?.focus(), 0);
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setStatus('sending');
+    if (step === 1) {
+      goNext();
+      return;
+    }
+    if (!validStep2()) return;
+
+    const name = details.name.trim();
+    const city = details.city.trim();
+    const phone = `+91${phoneDigits}`;
+    const utm: Record<string, string> = {};
+    new URLSearchParams(window.location.search).forEach((v, k) => {
+      if (k.toLowerCase().startsWith('utm_')) utm[k] = v;
+    });
+
+    // FormSubmit emails these fields as a table; existing field names are kept so leads look the same
+    const payload: Record<string, string> = {
+      _subject: copy.subject,
+      _template: 'table',
+      _captcha: 'false',
+      Source: ctaLabel,
+      'Form Type': copy.formType,
+      'Full Name': name,
+      Phone: phone,
+      Email: details.email.trim(),
+      City: city,
+      ...Object.fromEntries(qs.map((q) => [q.field, choices[q.key]])),
+      Consent: 'true',
+      'Consent Text': CONSENT_TEXT,
+      'Consent At': new Date().toISOString(),
+      'Page URL': window.location.href,
+      ...utm,
+    };
+
+    setSending(true);
     try {
       const res = await fetch('https://formsubmit.co/ajax/' + LEAD_EMAIL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          _subject: 'New Lead — Book Free Consultation',
-          _template: 'table',
-          _captcha: 'false',
-          Source: source || 'Website',
-          'Full Name': form.name,
-          Phone: form.phone,
-          Email: form.email,
-          'Loan Amount': form.loanAmount,
-          'Preferred Destination': form.destination,
-          'Admission Status': form.admissionStatus,
-          City: form.city,
-        }),
+        body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error('failed');
-      setStatus('done');
-      setForm(empty);
-    } catch {
-      setStatus('error');
+      if (!res.ok) throw new Error(`Lead submit failed: ${res.status}`);
+      const waText = `Hi Students Choice, I just booked a free ${copy.kind} consultation. Name: ${name}, City: ${city}.`;
+      setDone({
+        firstName: name.split(/\s+/)[0],
+        maskedPhone: `+91 ${phoneDigits.slice(0, 2)}XXX XX${phoneDigits.slice(-3)}`,
+        kind: copy.kind,
+        rows: [['City', city], ...qs.map((q): [string, string] => [q.summary, choices[q.key]])],
+        waHref: `${WHATSAPP_URL}?text=${encodeURIComponent(waText)}`,
+      });
+    } catch (err) {
+      console.error(err);
+      setError2('Something went wrong. Please try again or WhatsApp us.');
+    } finally {
+      setSending(false);
     }
   }
 
-  const fieldWrap = 'relative';
-  const inputCls = 'w-full pl-10 pr-3 py-2.5 rounded-lg bg-white border border-white/60 text-gray-800 text-[14px] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/70';
-  const iconCls = 'absolute left-3 top-1/2 -translate-y-1/2 text-[#8a2be2]';
-  const labelCls = 'block text-white text-[13px] font-semibold mb-1.5';
+  const setDetail = (k: keyof Details) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDetails((d) => ({ ...d, [k]: e.target.value }));
+  };
+
+  const switchTab = (t: LeadType) => {
+    clearErrors();
+    setType(t);
+  };
 
   return (
     <LeadContext.Provider value={{ open }}>
       {children}
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="absolute inset-0 bg-black/55 backdrop-blur-sm" onClick={close} />
+      {isOpen && (
+        <div className={styles.lp}>
+          <div className={styles.bg} onClick={close} />
+          <div ref={boxRef} className={styles.box} role="dialog" aria-modal="true" aria-labelledby="lpTitle">
+            <aside className={styles.side}>
+              <span className={styles.brand}>STUDENTS CHOICE</span>
+              <h3 className={styles.sideH}>{copy.sideH}</h3>
+              <ul className={styles.sideList}>
+                {copy.points.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
+              </ul>
+              <Image
+                className={styles.sideImg}
+                src="/assets/images/student-cutout.webp"
+                alt=""
+                width={760}
+                height={871}
+                sizes="310px"
+              />
+            </aside>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ type: 'spring', duration: 0.4 }}
-              className="relative w-full max-w-[920px] max-h-[92vh] overflow-y-auto rounded-[28px] shadow-2xl grid grid-cols-1 lg:grid-cols-2"
-              style={{ background: 'linear-gradient(135deg, #9b30f0 0%, #8a2be2 45%, #6a16c9 100%)' }}
-            >
-              {/* Close */}
-              <button onClick={close} aria-label="Close" className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors">
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
-              </button>
+            <div className={styles.main}>
+              <button className={styles.x} type="button" onClick={close} aria-label="Close">✕</button>
 
-              {/* Left image */}
-              <div className="hidden lg:flex relative items-end justify-center overflow-hidden">
-                <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 40% 30%, rgba(255,255,255,0.18), transparent 60%)' }} />
-                <span className="absolute top-8 left-8 text-white/15 text-5xl rotate-[-15deg] select-none">🎓</span>
-                <span className="absolute top-24 right-10 text-white/15 text-4xl rotate-[12deg] select-none">🎓</span>
-                <span className="absolute bottom-28 left-12 text-white/10 text-3xl rotate-[8deg] select-none">🎓</span>
-                <img
-                  src="/assets/images/End-to-End%20Overseas%20Education%20Loan%20Support.svg"
-                  alt="Book a free consultation"
-                  className="relative z-10 w-full h-auto object-contain object-bottom drop-shadow-2xl"
-                />
-              </div>
-
-              {/* Right form */}
-              <div className="p-6 sm:p-8">
-                <h3 className="text-white text-[26px] sm:text-[30px] font-extrabold text-center leading-tight">Book Free Consultation</h3>
-                <p className="text-white/85 text-[13px] text-center mt-1 mb-6 relative inline-block w-full">
-                  Schedule a 1-on-1 session with our expert counselors
-                </p>
-
-                {status === 'done' ? (
-                  <div className="bg-white/10 border border-white/20 rounded-2xl p-8 text-center">
-                    <div className="text-5xl mb-3">🎉</div>
-                    <h4 className="text-white font-extrabold text-lg">Request Received!</h4>
-                    <p className="text-white/80 mt-2 text-sm">Our counselor will reach out to you shortly.</p>
-                    <button onClick={close} className="mt-5 bg-white text-[#7a1fd6] font-bold px-6 py-2.5 rounded-lg">Close</button>
+              {done ? (
+                <div ref={doneRef} className={styles.done} tabIndex={-1}>
+                  <div className={styles.tick} aria-hidden="true">✓</div>
+                  <h3 id="lpTitle" className={styles.h}>Thank you{done.firstName ? `, ${done.firstName}` : ''}!</h3>
+                  <p className={styles.sub}>
+                    We’ve received your {done.kind} request. Our expert will call you on {done.maskedPhone}.
+                  </p>
+                  <ul className={styles.summary}>
+                    {done.rows.map(([k, v]) => (
+                      <li key={k}><span>{k}</span><b>{v}</b></li>
+                    ))}
+                  </ul>
+                  <div className={styles.actions}>
+                    <a className={styles.btn} href={done.waHref} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+                    <button className={`${styles.btn} ${styles.ghost}`} type="button" onClick={close}>Close</button>
                   </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className={labelCls}>Full Name<span className="text-yellow-300">*</span></label>
-                        <div className={fieldWrap}>
-                          <span className={iconCls}><IUser /></span>
-                          <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputCls} />
-                        </div>
-                      </div>
-                      <div>
-                        <label className={labelCls}>Phone <span className="text-yellow-300">*</span></label>
-                        <div className={fieldWrap}>
-                          <span className={iconCls}><IPhone /></span>
-                          <input required type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputCls} />
-                        </div>
-                      </div>
-                    </div>
+                </div>
+              ) : (
+                <form noValidate onSubmit={handleSubmit}>
+                  <h3 id="lpTitle" className={styles.h}>Book Free Consultation</h3>
+                  <p className={styles.sub}>{copy.sub}</p>
 
-                    <div>
-                      <label className={labelCls}>Email Address <span className="text-yellow-300">*</span></label>
-                      <div className={fieldWrap}>
-                        <span className={iconCls}><IMail /></span>
-                        <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputCls} />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className={labelCls}>Loan Amount<span className="text-yellow-300">*</span></label>
-                        <div className={fieldWrap}>
-                          <span className={iconCls}><IDollar /></span>
-                          <input required value={form.loanAmount} onChange={(e) => setForm({ ...form, loanAmount: e.target.value })} className={inputCls} />
-                        </div>
-                      </div>
-                      <div>
-                        <label className={labelCls}>Preferred Destination<span className="text-yellow-300">*</span></label>
-                        <div className={fieldWrap}>
-                          <span className={iconCls}><IGlobe /></span>
-                          <select required value={form.destination} onChange={(e) => setForm({ ...form, destination: e.target.value })} className={`${inputCls} appearance-none pr-9 ${form.destination ? 'text-gray-800' : 'text-gray-400'}`}>
-                            <option value="" disabled hidden>Select</option>
-                            {DESTINATIONS.map((d) => <option key={d} value={d} className="text-gray-800">{d}</option>)}
-                          </select>
-                          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"><IChevron /></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className={labelCls}>Admission Status<span className="text-yellow-300">*</span></label>
-                        <div className={fieldWrap}>
-                          <span className={iconCls}><IDoc /></span>
-                          <select required value={form.admissionStatus} onChange={(e) => setForm({ ...form, admissionStatus: e.target.value })} className={`${inputCls} appearance-none pr-9 ${form.admissionStatus ? 'text-gray-800' : 'text-gray-400'}`}>
-                            <option value="" disabled hidden>Select</option>
-                            {ADMISSION.map((a) => <option key={a} value={a} className="text-gray-800">{a}</option>)}
-                          </select>
-                          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"><IChevron /></span>
-                        </div>
-                      </div>
-                      <div>
-                        <label className={labelCls}>Your City<span className="text-yellow-300">*</span></label>
-                        <div className={fieldWrap}>
-                          <span className={iconCls}><IPin /></span>
-                          <input required value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} className={inputCls} />
-                        </div>
-                      </div>
-                    </div>
-
-                    {status === 'error' && (
-                      <p className="text-yellow-200 text-[12px] text-center">Something went wrong. Please try again.</p>
-                    )}
-
-                    <button type="submit" disabled={status === 'sending'} className="w-full mt-2 bg-gradient-to-r from-[#8c3bff] to-[#7016d6] text-white font-bold py-3 rounded-xl shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-70">
-                      {status === 'sending' ? 'Sending…' : 'Continue'}
+                  <div className={styles.tabs} role="group" aria-label="What do you need help with?">
+                    <button type="button" className={styles.tab} aria-pressed={type === 'loan'} onClick={() => switchTab('loan')}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18" /></svg>
+                      Education Loan
                     </button>
+                    <button type="button" className={styles.tab} aria-pressed={type === 'study'} onClick={() => switchTab('study')}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z" /><path d="M6 11v5c3 2 9 2 12 0v-5" /></svg>
+                      Study Abroad
+                    </button>
+                  </div>
 
-                    <div className="grid grid-cols-3 gap-2 pt-3 text-center">
-                      {[
-                        { icon: <IBolt />, t: 'Quick Response', s: 'Under 5 Minutes' },
-                        { icon: <IShield />, t: 'Expert Counselors', s: '5 Year Experience' },
-                        { icon: <ILock />, t: '100% Secure', s: 'Your Data is Safe' },
-                      ].map((b) => (
-                        <div key={b.t} className="flex flex-col items-center gap-1">
-                          <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center text-white">{b.icon}</span>
-                          <span className="text-white text-[10px] font-bold leading-tight">{b.t}</span>
-                          <span className="text-white/70 text-[9px] leading-tight">{b.s}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </form>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  <div className={styles.progress} aria-hidden="true">
+                    <span className={styles.stepLabel}>
+                      {step === 1 ? 'Step 1 of 2 · Your details' : `Step 2 of 2 · ${copy.step2}`}
+                    </span>
+                    <div className={styles.bar}><i style={{ width: step === 1 ? '50%' : '100%' }} /></div>
+                  </div>
+
+                  {step === 1 ? (
+                    <fieldset className={styles.step} data-step="1">
+                      <legend className={styles.srOnly}>Your details</legend>
+                      <div className={styles.grid}>
+                        <label className={`${styles.f} ${styles.full}`}>
+                          <span>Student Name <i className={styles.req}>*</i></span>
+                          <input ref={nameRef} name="name" type="text" autoComplete="name" placeholder="Enter full name" value={details.name} onChange={setDetail('name')} aria-invalid={invalid.has('name') || undefined} />
+                        </label>
+                        <label className={styles.f}>
+                          <span>Phone Number <i className={styles.req}>*</i></span>
+                          <span className={`${styles.preWrap} ${invalid.has('phone') ? styles.bad : ''}`}>
+                            <b className={styles.pre}>+91</b>
+                            <input name="phone" type="tel" inputMode="numeric" autoComplete="tel-national" placeholder="98765 43210" maxLength={11} value={details.phone} onChange={setDetail('phone')} aria-invalid={invalid.has('phone') || undefined} />
+                          </span>
+                        </label>
+                        <label className={styles.f}>
+                          <span>Email Address <i className={styles.req}>*</i></span>
+                          <input name="email" type="email" autoComplete="email" placeholder="you@example.com" value={details.email} onChange={setDetail('email')} aria-invalid={invalid.has('email') || undefined} />
+                        </label>
+                        <label className={`${styles.f} ${styles.full}`}>
+                          <span>Your City <i className={styles.req}>*</i></span>
+                          <input name="city" type="text" autoComplete="address-level2" placeholder="e.g. Patna" value={details.city} onChange={setDetail('city')} aria-invalid={invalid.has('city') || undefined} />
+                        </label>
+                      </div>
+                      {error1 && <p className={styles.err} role="alert">{error1}</p>}
+                      <button className={styles.btn} type="button" onClick={goNext}>Next →</button>
+                    </fieldset>
+                  ) : (
+                    <>
+                      <fieldset className={styles.step} data-step="2">
+                        <legend className={styles.srOnly}>{copy.step2}</legend>
+                        {qs.map((q) => (
+                          <div key={`${type}-${q.key}`} className={styles.q}>
+                            <span className={styles.ql} id={`lp-q-${q.key}`}>{q.label} <i className={styles.req}>*</i></span>
+                            <div className={`${styles.chips} ${invalid.has(q.key) ? styles.bad : ''}`} role="radiogroup" aria-labelledby={`lp-q-${q.key}`}>
+                              {q.options.map((opt) => (
+                                <label key={opt} className={styles.chip}>
+                                  <input
+                                    type="radio"
+                                    name={q.key}
+                                    value={opt}
+                                    checked={choices[q.key] === opt}
+                                    onChange={() => {
+                                      setChoices((c) => ({ ...c, [q.key]: opt }));
+                                      setInvalid((s) => {
+                                        const n = new Set(s);
+                                        n.delete(q.key);
+                                        return n;
+                                      });
+                                    }}
+                                  />
+                                  <span>{opt}</span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </fieldset>
+
+                      <label className={styles.consent}>
+                        <input type="checkbox" name="consent" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+                        <span>
+                          I agree that Students Choice and its lending and university partners may contact me by phone, WhatsApp, SMS and email about my enquiry. I have read the{' '}
+                          <Link href="/privacy" onClick={close}>Privacy Policy</Link>.
+                        </span>
+                      </label>
+                      {error2 && <p className={styles.err} role="alert">{error2}</p>}
+                      <div className={styles.actions}>
+                        <button className={`${styles.btn} ${styles.ghost}`} type="button" onClick={() => { clearErrors(); setStep(1); }}>← Back</button>
+                        <button className={styles.btn} type="submit" disabled={sending}>{sending ? 'Sending…' : copy.submit}</button>
+                      </div>
+                    </>
+                  )}
+
+                  <div className={styles.trust}>
+                    <span>🔒 Data kept private</span>
+                    <span>✓ 100% free consultation</span>
+                    <span>⚡ Quick call back</span>
+                  </div>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </LeadContext.Provider>
   );
 }

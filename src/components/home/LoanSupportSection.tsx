@@ -55,7 +55,7 @@ export function LoanSupportSection() {
           End-to-End Overseas Education Loan Support
         </motion.h2>
 
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16">
 
           <motion.div
             variants={containerVariants}
@@ -106,28 +106,41 @@ export function LoanSupportSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="w-full lg:w-[48%] relative flex justify-center items-end min-h-[440px]"
+            className="w-full lg:w-[48%] lg:sticky lg:top-24 flex justify-center"
           >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[560px] aspect-square rounded-full filter blur-[130px] opacity-20 -z-10"
-              style={{ background: 'radial-gradient(circle, #9b30f0 0%, #6E00E0 55%, transparent 80%)' }}></div>
-
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[400px] aspect-square -z-10 animate-pulse"
-              style={{ background: 'linear-gradient(140deg, #b36af5 0%, #6E00E0 55%, #4f0fa3 100%)', borderRadius: '40% 60% 70% 30% / 40% 50% 60% 70%' }}></div>
-
-            <div className="absolute top-[12%] right-[14%] w-24 h-24 rounded-full border-[6px] border-[#b36af5]/30 -z-10"></div>
-
-            <div className="absolute bottom-[16%] left-[10%] w-16 h-16 rounded-full -z-10 opacity-70 blur-[2px]"
-              style={{ background: 'linear-gradient(135deg, #9b30f0, #6E00E0)' }}></div>
-
-            <div className="relative z-10 w-full max-w-[380px] lg:-translate-x-2">
+            {/* student photo on a purple blob */}
+            <div className="relative w-full max-w-[320px] lg:max-w-[440px]">
+              <svg
+                className="absolute left-[12%] top-[9%] w-[84%] h-[80%] drop-shadow-[0_30px_40px_rgba(110,0,224,0.25)]"
+                viewBox="0 0 400 440"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <defs>
+                  <linearGradient id="loanSupportBlob" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stopColor="#c39bff" />
+                    <stop offset=".55" stopColor="#8b3dff" />
+                    <stop offset="1" stopColor="#6e00e0" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M 200.0 25.7 C 238.8 26.0, 284.2 42.0, 315.6 68.2 C 347.1 94.5, 382.4 141.8, 388.7 183.4 C 394.9 224.9, 374.5 280.5, 353.2 317.4 C 331.9 354.2, 296.8 389.5, 261.0 404.4 C 225.1 419.4, 172.6 422.4, 138.2 407.1 C 103.8 391.7, 73.6 349.3, 54.6 312.4 C 35.6 275.6, 19.6 226.9, 24.3 185.9 C 29.0 144.9, 53.6 93.0, 82.9 66.3 C 112.2 39.6, 161.2 25.4, 200.0 25.7 Z"
+                  fill="url(#loanSupportBlob)"
+                />
+                <path d="M60 330 C 120 250, 250 260, 330 170" fill="none" stroke="#ffffff" strokeOpacity=".35" strokeWidth="1.6" strokeDasharray="4 7" />
+                <path d="M90 120 C 160 80, 260 90, 320 140" fill="none" stroke="#ffffff" strokeOpacity=".25" strokeWidth="1.4" strokeDasharray="3 7" />
+              </svg>
               <img
-                src="/assets/images/End-to-End%20Overseas%20Education%20Loan%20Support.svg"
-                alt="End-to-End Overseas Education Loan Support"
-                className="w-full h-auto drop-shadow-2xl object-contain"
+                src="/assets/images/loan-support-student.webp"
+                alt="Student with a backpack and folder pointing to the loan support steps"
+                width={759}
+                height={870}
+                className="relative block w-full h-auto [mask-image:linear-gradient(#000_86%,transparent)]"
               />
             </div>
           </motion.div>
